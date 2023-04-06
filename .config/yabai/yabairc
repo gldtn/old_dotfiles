@@ -1,0 +1,233 @@
+#!/usr/bin/env sh
+
+# See this wiki page for information:
+#  - https://github.com/koekeishiya/yabai/wiki
+#
+
+# Configure scripting addition and update HASH
+# this hash must be updated manually after running brew upgrade.
+#
+# sudo visudo -f /private/etc/sudoers.d/yabai
+# echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa"
+#
+yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# Signals
+yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
+
+
+# sketchybar events (.yabairc)
+yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal -add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+
+# Space names
+#yabai -m space 1 --label one
+#yabai -m space 2 --label two
+#yabai -m space 3 --label three
+#yabai -m space 4 --label four
+#yabai -m space 5 --label five
+#yabai -m space 6 --label six
+
+# BAR HEIGHT
+BAR_HEIGHT=$(sketchybar -m --query bar | jq -r '.height')
+
+GENERAL=(
+    external_bar all:"${BAR_HEIGHT}":0
+    split_type auto
+    split_ratio 0.5
+    auto_balance off
+    insert_feedback_color 0xff282a36
+)
+
+LAYOUT=(
+    layout bsp
+    top_padding 6
+    bottom_padding 6
+    left_padding 6
+    right_padding 6
+    window_gap 6
+)
+
+WINDOWS=(
+    window_placement second_child
+    window_topmost off
+    window_shadow float
+    window_opacity off
+    #active_window_opacity 1.0
+    #normal_window_opacity 0.9
+    #window_opacity_duration 0.15
+    window_animation_duration 0.0
+    window_origin_display cursor # (options: default, focused, cursor)
+)
+
+
+# Window border
+BORDERS=(
+    window_border on
+    window_border_blur off
+    window_border_hidpi off
+    window_border_width 2
+    window_border_radius 12
+    active_window_border_color  0xff6272a4
+    normal_window_border_color  0xff282a36
+)
+
+MOUSE=(
+    mouse_modifier fn
+    mouse_action1 move
+    mouse_action2 resize
+    mouse_drop_action swap
+    focus_follows_mouse off
+    mouse_follows_focus off
+)
+
+yabai -m config "${GENERAL[@]}"
+yabai -m config "${LAYOUT[@]}"
+yabai -m config "${WINDOWS[@]}"
+yabai -m config "${BORDERS[@]}"
+yabai -m config "${MOUSE[@]}"
+
+# RULES
+UNMANAGED=(
+    Settings
+    Preferences
+    System Settings
+    System Preferences
+    System Information
+    Activity Monitor
+    Software Update
+    Archive Utility
+    Disk Utility
+    Calculator
+    Dictionary
+    App Store
+    FaceTime
+    zoom.us
+    Steam
+    VLC
+    Pika
+    IINA
+    Notes
+    Authy
+    Python
+    AltTab
+    Alfred
+    Raycast
+    Hyperkey
+    Superkey
+    Calendar
+    Bitwarden
+    Übersicht
+    SideNotes
+    ColorSlurp
+    Hidden Bar
+    AppCleaner
+    LibreOffice
+    Photo Booth
+    CleanShot X
+    SpaceLauncher
+    Screen Sharing
+    Inkscape Settings
+)
+
+for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
+    yabai -m rule --add label="unmanage_${UNMANAGED[(($i - 1))]}" app="^${UNMANAGED[(($i - 1))]}.*$" manage=off border=off
+done
+
+# App rules - Use $( yabai -m query --windows | jq '.[].app' ) to find app name
+
+# Apps notifications (testing..)
+yabai -m rule --add app="^Google Chrome$" title="^Typhon Notification$" manage=off border=off
+yabai -m rule --add app="^Mimestream$" title="(General|Software Update)" manage=off border=off
+yabai -m rule --add app="^DuckDuckGo$" title="(General|Software Update)" manage=off border=off
+
+# Exclude problematic apps from being managed:
+yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
+#yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+#yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
+
+
+STICKY=(
+    AltTab
+    Superkey
+    Hyperkey
+    Bitwarden
+    1Password
+    ColorSlurp
+    Authy Desktop
+    SpaceLauncher
+    #System Preferences
+    #System Settings
+)
+
+for ((i = 1; i <= "${#STICKY[@]}"; i++)); do
+    yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))]}.*$" sticky=on
+done
+
+SOCIAL=(
+    Slack
+	Discord
+    WhatsApp
+    Messages
+    Telegram
+    Messenger
+)
+
+for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
+	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=3
+done
+
+MEDIA=(
+	Music
+	Plex
+	Spotify
+	VLC
+    IINA
+)
+
+for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
+	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=4
+done
+
+OTHER=(
+	Inkscape
+)
+
+for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
+	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=5
+done
+
+CODE=(
+	Code
+    Sublime Text
+)
+
+for ((i = 1; i <= "${#CODE[@]}"; i++)); do
+	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=6
+done
+
+MAIL=(
+	Mimestream
+)
+
+for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
+	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=7
+done
+
+CONFIG=(
+    #Sublime Text
+)
+
+for ((i = 1; i <= "${#CONFIG[@]}"; i++)); do
+	yabai -m rule --add label="config_${CONFIG[(($i - 1))]}" app="^${CONFIG[(($i - 1))]}.*$" space=10
+done
+
+# Keep yabai up to date automatically
+YABAI_CERT=yabai-cert sh -c ~/.config/yabai/update.sh &
+
+echo "yabai configuration loaded.."
