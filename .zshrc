@@ -88,16 +88,6 @@ alias buc="brew update && brew upgrade --cask"
 alias blf="brew list --formula"
 alias buf="brew update && brew upgrade --formula"
 
-# Bare Git Repo 
-REPO="https://github.com/gldtn/dotfiles"
-DOTFILES="$HOME/.dotfiles"
-
-alias dtf="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
-# dotfiles () {
-#   git --git-dir="$DOTFILES" --work-tree="$HOME" "$@"
-# }
-
 # Git Aliases
 alias add="git add"
 alias commit="git commit"
