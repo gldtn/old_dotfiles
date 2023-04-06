@@ -1,0 +1,17 @@
+# Get editor completions based on the config schema
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[username]
+style_user = '#bd93f9'
+style_root = '#ff5555'
+format = '[$user]($style) '
+disabled = false
+show_always = true
+
+[shell]
+zsh_indicator = 'zsh'
+style = '#8be9fd'
+disabled = false
+
+[directory]
+style = '#ff79c6'
