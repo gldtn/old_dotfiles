@@ -38,10 +38,11 @@ alias blf="brew list --formula"
 alias buf="brew update && brew upgrade --formula"
 
 # YADM/Dotfiles
-alias df.p="yadm push -u origin main:main" 
-alias df.r="yadm pull --rebase origin main"
+alias df.p="yadm push -u origin main:main" # Push
+alias df.r="yadm pull --rebase origin main" # Rebase
 alias df.a="yadm add -u" # Stage all modified files at once
-alias df.c="yadm commit -m"
+alias df.c="yadm commit -m" # Commit files
+alias df.rm="yadm rm --cached" # Remove file from being tracked
 
 # Git Aliases
 alias add="git add"
