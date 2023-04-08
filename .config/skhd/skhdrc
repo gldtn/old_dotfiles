@@ -65,8 +65,9 @@ alt + shift - down : yabai -m window --swap south || $(yabai -m window --display
 alt + shift - up : yabai -m window --swap north   || $(yabai -m window --display north; yabai -m display --focus north)
 alt + shift - right : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 
-# move window between monitors
-alt + shift - d : WIN_ID=$(yabai -m query --windows --window | jq '.id') && yabai -m window --display recent && yabai -m window --focus $WIN_ID
+# move window between displays
+alt + shift - c : yabai -m window --display east; yabai -m display --focus east
+alt + shift - d : yabai -m window --display west; yabai -m display --focus west
 
 ## Rotate windows
 #   (options: 90, 180, 270 degree)
