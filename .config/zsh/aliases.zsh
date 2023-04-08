@@ -1,0 +1,60 @@
+# CD replacement - Zoxide
+## https://github.com/ajeetdsouza/zoxide
+alias cd=z
+
+# CAT replacement - Bat
+## https://github.com/sharkdp/bat
+alias cat=bat
+
+# Find replacement - Fd
+## https://github.com/sharkdp/fd
+alias find=fd
+
+# LS replacement - Exa
+## https://github.com/ogham/exa
+ignoreOS=".DS_Store|.localized|.CFUserTextEncoding";
+alias ls='exa -a --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
+alias ll='exa -alhH --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
+alias tr='exa -alhHT --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
+
+# Source/edit ~/.zshrc
+alias s.zsh="source $HOME/.config/zsh/.zshrc"
+alias e.zsh="open -a $EDITOR $HOME/.config/zsh/.zshrc"
+
+# Navigation
+alias ..="z .."
+alias ...="z ../.."
+alias ....="z ../../.."
+alias .....="z ../../../.."
+
+# Get macOS Software Updates, update installed Homebrew and their installed packages
+alias update="sudo softwareupdate -i -a"
+
+# Brew
+alias bup="brew update && brew outdated && brew upgrade && brew cleanup"
+alias blc="brew list --cask"
+alias buc="brew update && brew upgrade --cask"
+alias blf="brew list --formula"
+alias buf="brew update && brew upgrade --formula"
+
+# Git Aliases
+alias add="git add"
+alias commit="git commit"
+alias pull="git pull"
+alias stat="git status"
+alias gdiff="git diff HEAD"
+alias vdiff="git difftool HEAD"
+alias log="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias cfg="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
+alias push="git push"
+alias g="lazygit"
+
+# Yabai/SKHD
+alias yapp="yabai -m query --windows | jq '.[].app'"
+alias e.skhd="open -a $EDITOR $HOME/.config/skhd/skhdrc"
+alias e.yabai="open -a $EDITOR $HOME/.config/yabai/yabairc"
+alias r.yabai="echo Restarting Yabai.. && brew services restart yabai"
+alias r.sbar="echo Restarting SketchyBar.. && brew services restart sketchybar"
+
+# Python
+alias python="python3"

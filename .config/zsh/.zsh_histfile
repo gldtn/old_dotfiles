@@ -676,3 +676,18 @@ yadm push --help
 yadm pull rebase
 yadm pull --rebase origin main
 yadm push -u origin main:main
+yadm add .config/zsh/.
+yadm commit -m "zsh path restructure"
+yadm add .zshenv
+yadm commit -m "zsh path restructure"
+yadm push -u origin main:main
+s.zsh
+s.zsh\\
+exit
+s.zsh
+touch aliases.zsh
+s.zsh
+s.zsh
+dog
+e.yabai
+yadm add .config/zsh/.
