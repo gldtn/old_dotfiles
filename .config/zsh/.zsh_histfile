@@ -696,3 +696,7 @@ yadm commit -m "zsh aliases moved to separate file"
 yadm push -u origin main:main
 s.zsh
 dtf.c "Adding dotfiles aliases"
+dtf.a
+dtf.c "Adding dotfiles aliases"
+dtf.a\\
+exit
