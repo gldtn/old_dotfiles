@@ -691,3 +691,8 @@ s.zsh
 dog
 e.yabai
 yadm add .config/zsh/.
+yadm add ~/.config/zsh/.
+yadm commit -m "zsh aliases moved to separate file"
+yadm push -u origin main:main
+s.zsh
+dtf.c "Adding dotfiles aliases"
