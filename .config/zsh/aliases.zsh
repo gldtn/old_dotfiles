@@ -25,7 +25,8 @@ alias zshrc="open -a $EDITOR $ZDOTDIR/.zshrc"
 
 # LS replacement - Exa
 ## https://github.com/ogham/exa
-ignoreOS=".DS_Store|.localized|.CFUserTextEncoding";
+# ignoreOS=".DS_Store|.localized|.CFUserTextEncoding";
+ignoreOS=$(<$ZDOTDIR/macignore.zsh)
 alias ls='exa -a --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
 alias ll='exa -alhH --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
 alias tr='exa -alhHT --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
