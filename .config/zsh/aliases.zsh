@@ -10,25 +10,25 @@ alias cat=bat
 ## https://github.com/sharkdp/fd
 alias find=fd
 
-# LS replacement - Exa
-## https://github.com/ogham/exa
-ignoreOS=".DS_Store|.localized|.CFUserTextEncoding";
-alias ls='exa -a --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
-alias ll='exa -alhH --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
-alias tr='exa -alhHT --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
-
-# Source/edit ~/.zshrc
-alias s.zsh="source $ZDOTDIR/.zshrc"
-alias e.zsh="open -a $EDITOR $ZDOTDIR/.zshrc"
-
 # Navigation
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
 alias .....="z ../../../.."
 
-# Get macOS Software Updates, update installed Homebrew and their installed packages
+# Get macOS Software Updates
 alias update="sudo softwareupdate -i -a"
+
+# Source/edit ~/.zshrc
+alias s.zsh="source $ZDOTDIR/.zshrc"
+alias e.zsh="open -a $EDITOR $ZDOTDIR/.zshrc"
+
+# LS replacement - Exa
+## https://github.com/ogham/exa
+ignoreOS=".DS_Store|.localized|.CFUserTextEncoding";
+alias ls='exa -a --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
+alias ll='exa -alhH --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
+alias tr='exa -alhHT --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
 
 # Brew
 alias bup="brew update && brew outdated && brew upgrade && brew cleanup"
@@ -38,11 +38,11 @@ alias blf="brew list --formula"
 alias buf="brew update && brew upgrade --formula"
 
 # YADM/Dotfiles
-alias df.p="yadm push -u origin main:main" # Push
-alias df.r="yadm pull --rebase origin main" # Rebase
-alias df.a="yadm add -u" # Stage all modified files at once
-alias df.c="yadm commit -m" # Commit files
-alias df.rm="yadm rm --cached" # Remove file from being tracked
+alias yadm.a="yadm add -u" # Stage all modified files at once
+alias yadm.c="yadm commit -m" # Commit files
+alias yadm.p="yadm push -u origin main:main" # Push
+alias yadm.r="yadm pull --rebase origin main" # Rebase
+alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 
 # Git Aliases
 alias add="git add"
@@ -52,7 +52,6 @@ alias stat="git status"
 alias gdiff="git diff HEAD"
 alias vdiff="git difftool HEAD"
 alias log="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-alias cfg="git --git-dir=$HOME/dotfiles/ --work-tree=$HOME"
 alias push="git push"
 alias g="lazygit"
 
