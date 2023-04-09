@@ -18,8 +18,8 @@ alias ll='exa -alhH --icons --git --git-ignore -I="$ignoreOS" -s=type --color=al
 alias tr='exa -alhHT --icons --git --git-ignore -I="$ignoreOS" -s=type --color=always'
 
 # Source/edit ~/.zshrc
-alias s.zsh="source $HOME/.config/zsh/.zshrc"
-alias e.zsh="open -a $EDITOR $HOME/.config/zsh/.zshrc"
+alias s.zsh="source $ZDOTDIR/.zshrc"
+alias e.zsh="open -a $EDITOR $ZDOTDIR/.zshrc"
 
 # Navigation
 alias ..="z .."
