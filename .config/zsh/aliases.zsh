@@ -45,16 +45,16 @@ alias yadm.p="yadm push -u origin main:main" # Push
 alias yadm.r="yadm pull --rebase origin main" # Rebase
 alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 
-# Git Aliases
-# alias add="git add"
-# alias commit="git commit"
-# alias pull="git pull"
-# alias stat="git status"
-# alias gdiff="git diff HEAD"
-# alias vdiff="git difftool HEAD"
-# alias log="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
-# alias push="git push"
-# alias g="lazygit"
+Git Aliases
+alias add="git add"
+alias commit="git commit"
+alias pull="git pull"
+alias stat="git status"
+alias gdiff="git diff HEAD"
+alias vdiff="git difftool HEAD"
+alias log="git log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"
+alias push="git push"
+alias g="lazygit"
 
 # Yabai/SKHD
 alias yapp="yabai -m query --windows | jq '.[].app'"
