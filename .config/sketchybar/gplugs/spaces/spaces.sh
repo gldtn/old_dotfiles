@@ -14,7 +14,7 @@ sketchybar -m --set space1 "${space1[@]}"
 
 # SPACE 2: WEB ICON
 space2=(
-    icon=
+    icon=󰶚
     associated_display=1
     associated_space=2
     label.padding_right=0
@@ -79,9 +79,9 @@ space6=(
 sketchybar -m --add space space6 left
 sketchybar -m --set space6 "${space6[@]}"
 
-# SPACE 7: EMAIL ICON
+# SPACE 7: EDITOR ICON
 space7=(
-    icon=󰇮
+    icon=
 	associated_display=2
 	associated_space=7
 	label.padding_right=0
@@ -93,9 +93,9 @@ sketchybar -m --add space space7 left
 sketchybar -m --set space7 "${space7[@]}"
 
 
-# SPACE 8: SHUTTLE ICON
+# SPACE 8: MAIL ICON
 space8=(
-    icon=
+    icon=
     associated_display=2
     associated_space=8
     label.padding_right=0
@@ -106,9 +106,9 @@ space8=(
 sketchybar -m --add space space8 left
 sketchybar -m --set space8 "${space8[@]}"
 
-# SPACE 9: INVADERS ICON
+# SPACE 9: READ ICON
 space9=(
-    icon=󰯉
+    icon=󱚚
     associated_display=2
     associated_space=9
     label.padding_left=0
@@ -119,9 +119,9 @@ space9=(
 sketchybar -m --add space space9 left
 sketchybar -m --set space9 "${space9[@]}"
 
-# SPACE 10: BRACES ICON
+# SPACE 10: ETC ICON
 space10=(
-    icon=󱃖
+    icon=
     associated_display=2
     associated_space=10
     label.padding_right=0

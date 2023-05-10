@@ -128,6 +128,7 @@ UNMANAGED=(
     LibreOffice
     Photo Booth
     CleanShot X
+    Camtasia 2022
     SpaceLauncher
     Screen Sharing
     Inkscape Settings
@@ -169,6 +170,15 @@ for ((i = 1; i <= "${#STICKY[@]}"; i++)); do
     yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))]}.*$" sticky=on
 done
 
+HOME=(
+    Google Chrome
+    Firefox
+)
+
+for ((i = 1; i <= "${#HOME[@]}"; i++)); do
+    yabai -m rule --add label="home_${HOME[(($i - 1))]}" app="^${HOME[(($i - 1))]}.*$" space=1
+done
+
 SOCIAL=(
     Slack
 	Discord
@@ -183,11 +193,12 @@ for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
 done
 
 MEDIA=(
-	Music
+    Spotify
+    Music
 	Plex
-	Spotify
-	VLC
     IINA
+    mpv
+	VLC
 )
 
 for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
@@ -204,11 +215,18 @@ done
 
 CODE=(
 	Code
-    Sublime Text
 )
 
 for ((i = 1; i <= "${#CODE[@]}"; i++)); do
 	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=6
+done
+
+CONFIG=(
+    Sublime Text
+)
+
+for ((i = 1; i <= "${#CONFIG[@]}"; i++)); do
+    yabai -m rule --add label="config_${CONFIG[(($i - 1))]}" app="^${CONFIG[(($i - 1))]}.*$" space=7
 done
 
 MAIL=(
@@ -216,18 +234,18 @@ MAIL=(
 )
 
 for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
-	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=7
+	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=8
 done
 
-CONFIG=(
-    #Sublime Text
+READ=(
+    Skim
 )
 
-for ((i = 1; i <= "${#CONFIG[@]}"; i++)); do
-	yabai -m rule --add label="config_${CONFIG[(($i - 1))]}" app="^${CONFIG[(($i - 1))]}.*$" space=10
+for ((i = 1; i <= "${#READ[@]}"; i++)); do
+    yabai -m rule --add label="read_${READ[(($i - 1))]}" app="^${READ[(($i - 1))]}.*$" space=9
 done
 
 # Keep yabai up to date automatically
-YABAI_CERT=yabai-cert sh -c ~/.config/yabai/update.sh &
+#YABAI_CERT=yabai-cert sh -c ~/.config/yabai/update.sh &
 
 echo "yabai configuration loaded.."

@@ -97,13 +97,13 @@ meh - k : yabai -m window --resize top:0:-50;     \
 meh - l : yabai -m window --resize right:50:0;    \
 			yabai -m window --resize left:50:0
 # Alternatively, use the arrow keys
-meh - left : yabai -m window --resize left:-50:0;    \
+meh - left : yabai -m window --resize left:-50:0;   \
 			yabai -m window --resize right:-50:0
-meh - down : yabai -m window --resize bottom:0:50;   \
+meh - down : yabai -m window --resize bottom:0:50;  \
 			yabai -m window --resize top:0:50
-meh - up : yabai -m window --resize top:0:-50;     \
+meh - up : yabai -m window --resize top:0:-50;     	\
 			yabai -m window --resize bottom:0:-50
-meh - right : yabai -m window --resize right:50:0;    \
+meh - right : yabai -m window --resize right:50:0;  \
 			yabai -m window --resize left:50:0
 
 # Balance size of windows
@@ -125,14 +125,16 @@ hyper - t : yabai -m window --toggle topmost
 hyper - v : yabai -m window --toggle sticky
 
 # Restart Yabai
-meh - z : 						\
-	/usr/bin/env osascript <<< 		\
-		"display notification \"Restarting Yabai\" with title \"Yabai\""; \
-		launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+meh - z : yabai --restart-service
 
 # Toggle sketchybar
 meh - space : sketchybar --bar hidden=toggle
 
 ## Hotkeys to launch Apps
 # Launch a new terminal
-hyper - return : open -n -a kitty.app
+hyper - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+# Open VSCode
+hyper - c : code
+# open mpv
+hyper - m : open -na /Applications/mpv.app #$(pbpaste)

@@ -3,7 +3,7 @@
 
 ## Fonts
 export FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
-export NERD_FONT="Liga SFMono Nerd Font"
+export NERD_FONT="Liga SFMono Nerd Font" # Liga SFMono Nerd Font
 export FANCY_FONT="MonoLisa"
 export PADDINGS=8
 export BG_HEIGHT=21 # Items (Icons & Labels)
