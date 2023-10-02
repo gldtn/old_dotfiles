@@ -11,6 +11,9 @@ function suyabai () {
     fi
 }
 
+# unpin yabai from brew first
+brew unpin yabai
+
 # the update script
 export YABAI_CERT=yabai-cert   
 yabai --stop-service 
@@ -18,3 +21,6 @@ brew reinstall koekeishiya/formulae/yabai
 codesign -fs "${YABAI_CERT:-yabai-cert}" "$(brew --prefix yabai)/bin/yabai"
 suyabai
 yabai --start-service
+
+# pin yabai back to brew
+brew pin yabai
