@@ -109,6 +109,7 @@ UNMANAGED=(
     Steam
     VLC
     Pika
+    Herd
     IINA
     Notes
     Authy
@@ -128,10 +129,12 @@ UNMANAGED=(
     LibreOffice
     Photo Booth
     CleanShot X
+    Bitcoin Core
     Camtasia 2022
     SpaceLauncher
     Screen Sharing
     Inkscape Settings
+    MobileDeviceUpdater
 )
 
 for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
@@ -154,6 +157,10 @@ yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Selec
 
 
 STICKY=(
+    mpv
+    VLC
+    Plex
+    IINA
     AltTab
     Superkey
     Hyperkey
@@ -189,16 +196,12 @@ SOCIAL=(
 )
 
 for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
-	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=3
+	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=10
 done
 
 MEDIA=(
     Spotify
     Music
-	Plex
-    IINA
-    mpv
-	VLC
 )
 
 for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
@@ -231,6 +234,7 @@ done
 
 MAIL=(
 	Mimestream
+    Thunderbird Daily
 )
 
 for ((i = 1; i <= "${#MAIL[@]}"; i++)); do

@@ -136,5 +136,6 @@ hyper - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance 
 
 # Open VSCode
 hyper - c : code
+
 # open mpv
 hyper - m : open -na /Applications/mpv.app #$(pbpaste)

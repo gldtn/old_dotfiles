@@ -11,7 +11,10 @@ show_always = true
 [shell]
 zsh_indicator = 'zsh'
 style = '#8be9fd'
-disabled = false
+disabled = true
 
 [directory]
 style = '#ff79c6'
+
+[battery]
+disabled = true

@@ -1,5 +1,6 @@
 ## Load starship
 eval "$(starship init zsh)"
+export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 
 ## Load zoxide
 eval "$(zoxide init zsh)"

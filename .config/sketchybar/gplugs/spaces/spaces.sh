@@ -27,7 +27,7 @@ sketchybar -m --set space2 "${space2[@]}"
 
 # SPACE 3: CHAT ICON
 space3=(
-    icon=
+    icon=
     associated_display=1
     associated_space=3
     label.padding_right=0
@@ -121,7 +121,7 @@ sketchybar -m --set space9 "${space9[@]}"
 
 # SPACE 10: ETC ICON
 space10=(
-    icon=
+    icon=
     associated_display=2
     associated_space=10
     label.padding_right=0
