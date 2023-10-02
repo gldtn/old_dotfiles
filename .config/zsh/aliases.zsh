@@ -1,16 +1,6 @@
 # CD replacement - Zoxide
 ## https://github.com/ajeetdsouza/zoxide
-alias cd=z
-
-# CAT replacement - Bat
-## https://github.com/sharkdp/bat
-alias cat=bat
-
-# Find replacement - Fd
-## https://github.com/sharkdp/fd
-alias find=fd
-
-# Navigation
+alias cd="z"
 alias ..="z .."
 alias ...="z ../.."
 alias ....="z ../../.."
@@ -22,6 +12,17 @@ alias update="sudo softwareupdate -i -a"
 # Source/edit ~/.zshrc
 alias s.zsh="echo ZSH is being sourced.. && source $ZDOTDIR/.zshrc"
 alias zshrc="open -a $EDITOR $ZDOTDIR/.zshrc"
+
+# Python
+alias python="python3"
+
+# CAT replacement - Bat
+## https://github.com/sharkdp/bat
+alias cat="bat"
+
+# Find replacement - Fd
+## https://github.com/sharkdp/fd
+alias find="fd"
 
 # LS replacement - Exa
 ## https://github.com/ogham/exa
@@ -54,6 +55,3 @@ alias skhdrc="open -a $EDITOR $configDIR/skhd/skhdrc"
 alias yabairc="open -a $EDITOR $configDIR/yabai/yabairc"
 alias r.sbar="echo Restarting SketchyBar.. && brew services restart sketchybar"
 alias yabaiup='echo Updating Yabai HEAD.. && $HOME/.config/yabai/./update.sh'
-
-# Python
-alias python="python3"
