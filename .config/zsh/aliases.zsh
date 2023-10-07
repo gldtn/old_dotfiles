@@ -54,4 +54,4 @@ alias ytitle="yabai -m query --windows | jq '.[].title'"
 alias skhdrc="open -a $EDITOR $configDIR/skhd/skhdrc"
 alias yabairc="open -a $EDITOR $configDIR/yabai/yabairc"
 alias r.sbar="echo Restarting SketchyBar.. && brew services restart sketchybar"
-alias yabaiup='echo Updating Yabai HEAD.. && $HOME/.config/yabai/./update.sh'
+alias upyabai='echo Updating Yabai HEAD.. && $HOME/.config/yabai/./update.sh'

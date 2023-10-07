@@ -106,6 +106,7 @@ UNMANAGED=(
     App Store
     FaceTime
     zoom.us
+    Finder
     Steam
     VLC
     Pika
@@ -126,12 +127,14 @@ UNMANAGED=(
     ColorSlurp
     Hidden Bar
     AppCleaner
+    ExpressVPNz
     LibreOffice
     Photo Booth
     CleanShot X
     Bitcoin Core
-    Camtasia 2022
+    Opal Composer
     SpaceLauncher
+    Camtasia 2022
     Screen Sharing
     Inkscape Settings
     MobileDeviceUpdater
@@ -150,11 +153,11 @@ yabai -m rule --add app="^DuckDuckGo$" title="(General|Software Update)" manage=
 
 # Exclude problematic apps from being managed:
 yabai -m rule --add label="Finder" app="^Finder$" title="(Co(py|nnect)|Move|Info|Pref)" manage=off
-#yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
-#yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
-
+yabai -m rule --add label="Thunderbird" app="^Thunderbird Daily$" title="^(Write:|Sending Message -)" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 
 STICKY=(
     mpv
