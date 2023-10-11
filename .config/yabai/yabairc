@@ -20,7 +20,7 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 
 # sketchybar events (.yabairc)
 yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-yabai -m signal -add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
+yabai -m signal --add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
 yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 
 # Space names
@@ -53,26 +53,13 @@ LAYOUT=(
 
 WINDOWS=(
     window_placement second_child
-    window_topmost off
     window_shadow float
-    window_opacity off
-    #active_window_opacity 1.0
-    #normal_window_opacity 0.9
-    #window_opacity_duration 0.15
+    window_opacity on
+    active_window_opacity 1.0
+    normal_window_opacity 0.95
+    window_opacity_duration 0.15
     window_animation_duration 0.0
     window_origin_display cursor # (options: default, focused, cursor)
-)
-
-
-# Window border
-BORDERS=(
-    window_border on
-    window_border_blur off
-    window_border_hidpi off
-    window_border_width 2
-    window_border_radius 12
-    active_window_border_color  0xff6272a4
-    normal_window_border_color  0xff282a36
 )
 
 MOUSE=(
@@ -87,10 +74,104 @@ MOUSE=(
 yabai -m config "${GENERAL[@]}"
 yabai -m config "${LAYOUT[@]}"
 yabai -m config "${WINDOWS[@]}"
-yabai -m config "${BORDERS[@]}"
 yabai -m config "${MOUSE[@]}"
 
-# RULES
+CASA=(
+    Firefox
+    SigmaOS
+    Google Chrome
+)
+
+for ((i = 1; i <= "${#CASA[@]}"; i++)); do
+    yabai -m rule --add label="casa_${CASA[(($i - 1))]}" app="^${CASA[(($i - 1))]}.*$" space=1
+done
+
+SOCIAL=(
+    Slack
+	Discord
+    WhatsApp
+    Messages
+    Telegram
+    Messenger
+)
+
+for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
+	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=10
+done
+
+MEDIA=(
+    Spotify
+    Music
+)
+
+for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
+	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=4
+done
+
+OTHER=(
+	Inkscape
+)
+
+for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
+	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=5
+done
+
+CODE=(
+	Code
+)
+
+for ((i = 1; i <= "${#CODE[@]}"; i++)); do
+	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=6
+done
+
+TERMCONF=(
+    Sublime Text
+)
+
+for ((i = 1; i <= "${#TERMCONF[@]}"; i++)); do
+    yabai -m rule --add label="termconf_${TERMCONF[(($i - 1))]}" app="^${TERMCONF[(($i - 1))]}.*$" space=7
+done
+
+MAIL=(
+	Mimestream
+    Thunderbird Daily
+)
+
+for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
+	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=8
+done
+
+READ=(
+    Skim
+)
+
+for ((i = 1; i <= "${#READ[@]}"; i++)); do
+    yabai -m rule --add label="read_${READ[(($i - 1))]}" app="^${READ[(($i - 1))]}.*$" space=5
+done
+
+# STICKY apps
+STICKY=(
+    mpv
+    VLC
+    Plex
+    IINA
+    AltTab
+    Superkey
+    Hyperkey
+    Bitwarden
+    1Password
+    ColorSlurp
+    Authy Desktop
+    SpaceLauncher
+    System Settings
+    System Preferences
+)
+
+for ((i = 1; i <= "${#STICKY[@]}"; i++)); do
+    yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))]}.*$" sticky=on
+done
+
+# FLOATING apps
 UNMANAGED=(
     Settings
     Preferences
@@ -142,14 +223,14 @@ UNMANAGED=(
 )
 
 for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
-    yabai -m rule --add label="unmanage_${UNMANAGED[(($i - 1))]}" app="^${UNMANAGED[(($i - 1))]}.*$" manage=off border=off
+    yabai -m rule --add label="unmanage_${UNMANAGED[(($i - 1))]}" app="^${UNMANAGED[(($i - 1))]}.*$" manage=off
 done
 
 # App rules - Use $( yabai -m query --windows | jq '.[].app' ) to find app name
 
 # Apps notifications (testing..)
-yabai -m rule --add app="^Google Chrome$" title="^Typhon Notification$" manage=off border=off
-yabai -m rule --add app="^DuckDuckGo$" title="^(General|Settings|Software Update)&" manage=off border=off
+yabai -m rule --add app="^Google Chrome$" title="^Typhon Notification$" manage=off
+yabai -m rule --add app="^DuckDuckGo$" title="^(General|Settings|Software Update)&" manage=off
 
 # Exclude problematic apps from being managed:
 yabai -m rule --add label="Finder" app="^Finder$" title="^(Co(py|nnect)|Move|Info|Pref)&" manage=off
@@ -158,99 +239,6 @@ yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Selec
 yabai -m rule --add label="Thunderbird" app="^Thunderbird Daily$" title="^(Write:|Sending Message -)$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
-yabai -m rule --add label "Mimestream" app="^Mimestream$" title="^(Appearance|General|Accounts|Software Update)&" manage=off
-
-STICKY=(
-    mpv
-    VLC
-    Plex
-    IINA
-    AltTab
-    Superkey
-    Hyperkey
-    Bitwarden
-    1Password
-    ColorSlurp
-    Authy Desktop
-    SpaceLauncher
-    System Settings˝
-    System Preferences
-)
-
-for ((i = 1; i <= "${#STICKY[@]}"; i++)); do
-    yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))]}.*$" sticky=on
-done
-
-HOME=(
-    Google Chrome
-    Firefox
-)
-
-for ((i = 1; i <= "${#HOME[@]}"; i++)); do
-    yabai -m rule --add label="home_${HOME[(($i - 1))]}" app="^${HOME[(($i - 1))]}.*$" space=1
-done
-
-SOCIAL=(
-    Slack
-	Discord
-    WhatsApp
-    Messages
-    Telegram
-    Messenger
-)
-
-for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
-	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=10
-done
-
-MEDIA=(
-    Spotify
-    Music
-)
-
-for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
-	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=4
-done
-
-OTHER=(
-	Inkscape
-)
-
-for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
-	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=5
-done
-
-CODE=(
-	Code
-)
-
-for ((i = 1; i <= "${#CODE[@]}"; i++)); do
-	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=6
-done
-
-CONFIG=(
-    Sublime Text
-)
-
-for ((i = 1; i <= "${#CONFIG[@]}"; i++)); do
-    yabai -m rule --add label="config_${CONFIG[(($i - 1))]}" app="^${CONFIG[(($i - 1))]}.*$" space=7
-done
-
-MAIL=(
-	Mimestream
-    Thunderbird Daily
-)
-
-for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
-	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=8
-done
-
-READ=(
-    Skim
-)
-
-for ((i = 1; i <= "${#READ[@]}"; i++)); do
-    yabai -m rule --add label="read_${READ[(($i - 1))]}" app="^${READ[(($i - 1))]}.*$" space=9
-done
+yabai -m rule --add label="Mimestream" app="^Mimestream$" title="^(Appearance|General|Accounts|Software Update)&" manage=off
 
 echo "yabai configuration loaded.."

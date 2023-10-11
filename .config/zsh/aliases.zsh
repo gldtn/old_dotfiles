@@ -13,6 +13,8 @@ alias update="sudo softwareupdate -i -a"
 alias s.zsh="echo ZSH is being sourced.. && source $ZDOTDIR/.zshrc"
 alias zshrc="open -a $EDITOR $ZDOTDIR/.zshrc"
 
+# Server -> Kitana
+alias kitana="ssh gldtn@170.187.162.31"
 # Python
 alias python="python3"
 

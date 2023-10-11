@@ -1,6 +1,6 @@
 ## PRIMARY DISPLAY SPACES
 # SPACE 1: HOME ICON
-space1=(
+casa=(
     icon=
     associated_display=1
     associated_space=1
@@ -9,12 +9,12 @@ space1=(
     click_script="yabai -m space --focus 1"
     script="~/.config/sketchybar/plugins/space.sh"
 )
-sketchybar -m --add space space1 left
-sketchybar -m --set space1 "${space1[@]}"
+sketchybar -m --add space casa left
+sketchybar -m --set casa "${casa[@]}"
 
 # SPACE 2: WEB ICON
 space2=(
-    icon=󰶚
+    icon=2
     associated_display=1
     associated_space=2
     label.padding_right=0
@@ -27,7 +27,7 @@ sketchybar -m --set space2 "${space2[@]}"
 
 # SPACE 3: CHAT ICON
 space3=(
-    icon=
+    icon=3
     associated_display=1
     associated_space=3
     label.padding_right=0
@@ -40,7 +40,7 @@ sketchybar -m --set space3 "${space3[@]}"
 
 # SPACE 4: MUSIC ICON
 space4=(
-    icon=
+    icon=4
     associated_display=1
     associated_space=4
     label.padding_right=0
@@ -53,7 +53,7 @@ sketchybar -m --set space4 "${space4[@]}"
 
 # SPACE 5: OTHER ICON
 space5=(
-    icon=
+    icon=5
     associated_display=1
     associated_space=5
     label.padding_right=0
@@ -80,7 +80,7 @@ sketchybar -m --add space space6 left
 sketchybar -m --set space6 "${space6[@]}"
 
 # SPACE 7: EDITOR ICON
-space7=(
+code=(
     icon=
 	associated_display=2
 	associated_space=7
@@ -89,12 +89,12 @@ space7=(
 	click_script="yabai -m space --focus 7"
 	script="~/.config/sketchybar/plugins/space.sh"
 )
-sketchybar -m --add space space7 left
-sketchybar -m --set space7 "${space7[@]}"
+sketchybar -m --add space code left
+sketchybar -m --set code "${code[@]}"
 
 
 # SPACE 8: MAIL ICON
-space8=(
+termconf=(
     icon=
     associated_display=2
     associated_space=8
@@ -103,12 +103,12 @@ space8=(
     click_script="yabai -m space --focus 8"
     script="~/.config/sketchybar/plugins/space.sh"
 )
-sketchybar -m --add space space8 left
-sketchybar -m --set space8 "${space8[@]}"
+sketchybar -m --add space termconf left
+sketchybar -m --set termconf "${termconf[@]}"
 
 # SPACE 9: READ ICON
 space9=(
-    icon=󱚚
+    icon=
     associated_display=2
     associated_space=9
     label.padding_left=0
@@ -119,7 +119,7 @@ space9=(
 sketchybar -m --add space space9 left
 sketchybar -m --set space9 "${space9[@]}"
 
-# SPACE 10: ETC ICON
+# SPACE 10: SOCIAL ICON
 space10=(
     icon=
     associated_display=2

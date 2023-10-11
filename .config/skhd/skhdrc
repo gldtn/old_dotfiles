@@ -71,8 +71,8 @@ alt + shift - 0x21 : yabai -m window --swap west  || $(yabai -m window --display
 alt + shift - 0x1E : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
 
 # move window between displays
-alt + shift - c : yabai -m window --display east; yabai -m display --focus east
-alt + shift - d : yabai -m window --display west; yabai -m display --focus west
+alt + shift - w : yabai -m window --display west; yabai -m display --focus west
+alt + shift - e : yabai -m window --display east; yabai -m display --focus east
 
 ## Rotate windows
 #   (options: 90, 180, 270 degree)
@@ -113,16 +113,19 @@ meh - 0 : yabai -m space --balance
 alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 # Float / Unfloat window
-alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2; yabai -m window --toggle border
-alt + shift - p : yabai -m window --toggle sticky --toggle topmost --toggle pip
+alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2;
+
+# Picture-in-picture
+alt + shift - p : yabai -m window --toggle sticky --toggle pip
+
+# Expose
 alt + shift - t : yabai -m window --toggle expose
 
 # Toggle window split type
 alt - s : yabai -m window --toggle split
 
-# Toggle topmost (keep above other windows)
-hyper - t : yabai -m window --toggle topmost
-hyper - v : yabai -m window --toggle sticky
+# Toggle sticky (window appear in all windows)
+alt - v : yabai -m window --toggle sticky
 
 # Restart Yabai
 meh - z : yabai --restart-service
