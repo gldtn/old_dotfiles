@@ -42,8 +42,8 @@ alias buf="brew update && brew upgrade --formula" # or brew outdated | xargs bre
 alias bup="brew update && brew outdated && brew upgrade && brew upgrade --cask && brew cleanup"
 
 # YADM/Dotfiles
-alias yadm.a="yadm add" # Add files
-alias yadm.s="yadm add -u" # Stage all modified files at once
+alias yadm.s="yadm status"
+alias yadm.a="yadm add -u" # Stage all modified files at once
 alias yadm.c="yadm commit -m" # Commit files
 alias yadm.p="yadm push -u origin main:main" # Push
 alias yadm.r="yadm pull --rebase origin main" # Rebase
