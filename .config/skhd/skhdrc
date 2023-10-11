@@ -118,14 +118,11 @@ alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2;
 # Picture-in-picture
 alt + shift - p : yabai -m window --toggle sticky --toggle pip
 
-# Expose
-alt + shift - t : yabai -m window --toggle expose
-
 # Toggle window split type
 alt - s : yabai -m window --toggle split
 
 # Toggle sticky (window appear in all windows)
-alt - v : yabai -m window --toggle sticky
+alt - v : yabai -m window --toggle sticky --toggle float --grid 3:3:3:0:1:3;
 
 # Restart Yabai
 meh - z : yabai --restart-service

@@ -19,9 +19,9 @@ yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m q
 
 
 # sketchybar events (.yabairc)
-yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-yabai -m signal --add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
-yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+# yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
+# yabai -m signal --add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
+# yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
 
 # Space names
 #yabai -m space 1 --label one
@@ -32,7 +32,8 @@ yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger
 #yabai -m space 6 --label six
 
 # BAR HEIGHT
-BAR_HEIGHT=$(sketchybar -m --query bar | jq -r '.height')
+# BAR_HEIGHT=$(sketchybar -m --query bar | jq -r '.height')
+BAR_HEIGHT=0
 
 GENERAL=(
     external_bar all:"${BAR_HEIGHT}":0
@@ -56,7 +57,7 @@ WINDOWS=(
     window_shadow float
     window_opacity on
     active_window_opacity 1.0
-    normal_window_opacity 0.95
+    normal_window_opacity 0.98
     window_opacity_duration 0.15
     window_animation_duration 0.0
     window_origin_display cursor # (options: default, focused, cursor)
@@ -230,15 +231,15 @@ done
 
 # Apps notifications (testing..)
 yabai -m rule --add app="^Google Chrome$" title="^Typhon Notification$" manage=off
-yabai -m rule --add app="^DuckDuckGo$" title="^(General|Settings|Software Update)&" manage=off
+yabai -m rule --add app="^DuckDuckGo$" title="^General|Settings|Software Update&" manage=off
 
 # Exclude problematic apps from being managed:
 yabai -m rule --add label="Finder" app="^Finder$" title="^(Co(py|nnect)|Move|Info|Pref)&" manage=off
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
 yabai -m rule --add label="Thunderbird" app="^Thunderbird Daily$" title="^(Write:|Sending Message -)$" manage=off
-yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
-yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
-yabai -m rule --add label="Mimestream" app="^Mimestream$" title="^(Appearance|General|Accounts|Software Update)&" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance$" manage=off
+yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance$" manage=off
+yabai -m rule --add label="Mimestream" app="^Mimestream$" title="^General|(Account|Template|Signature|Filter|Lab)s|Viewing|Composing|Sidebar & List&" manage=off
 
 echo "yabai configuration loaded.."
