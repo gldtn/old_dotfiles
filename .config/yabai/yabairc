@@ -4,6 +4,9 @@
 #  - https://github.com/koekeishiya/yabai/wiki
 #
 
+# Disable Apple's shitty window manager
+#launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist > /dev/null 2>&1 &
+
 # Configure scripting addition and update HASH
 # this hash must be updated manually after running brew upgrade.
 #
@@ -13,23 +16,25 @@
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# Signals
-yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
-yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
+# # Signals
+# yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
+# yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
 
 
-# sketchybar events (.yabairc)
-# yabai -m signal --add event=window_focused action="sketchybar -m --trigger window_focus &> /dev/null"
-# yabai -m signal --add event=window_minimized action="sketchybar -m --trigger window_focus &> /dev/null"
-# yabai -m signal --add event=window_title_changed action="sketchybar -m --trigger title_change &> /dev/null"
+# Yabai Indicator sync - https://github.com/xiamaz/YabaiIndicator
+yabai -m signal --add event=mission_control_exit action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=display_added action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=display_removed action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_created action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_destroyed action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_focused action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_moved action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_resized action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_minimized action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
+yabai -m signal --add event=window_deminimized action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
 
 # Space names
 #yabai -m space 1 --label one
-#yabai -m space 2 --label two
-#yabai -m space 3 --label three
-#yabai -m space 4 --label four
-#yabai -m space 5 --label five
-#yabai -m space 6 --label six
 
 # BAR HEIGHT
 # BAR_HEIGHT=$(sketchybar -m --query bar | jq -r '.height')
@@ -57,18 +62,18 @@ WINDOWS=(
     window_shadow float
     window_opacity on
     active_window_opacity 1.0
-    normal_window_opacity 0.98
+    normal_window_opacity 0.97
     window_opacity_duration 0.15
     window_animation_duration 0.0
     window_origin_display cursor # (options: default, focused, cursor)
 )
 
 MOUSE=(
-    mouse_modifier fn
+    mouse_modifier alt # (default: fn)
     mouse_action1 move
     mouse_action2 resize
     mouse_drop_action swap
-    focus_follows_mouse off
+    focus_follows_mouse off # (options: autofocus, autoraise)
     mouse_follows_focus off
 )
 
@@ -77,6 +82,7 @@ yabai -m config "${LAYOUT[@]}"
 yabai -m config "${WINDOWS[@]}"
 yabai -m config "${MOUSE[@]}"
 
+## SPACE 1
 CASA=(
     Firefox
     SigmaOS
@@ -84,9 +90,59 @@ CASA=(
 )
 
 for ((i = 1; i <= "${#CASA[@]}"; i++)); do
-    yabai -m rule --add label="casa_${CASA[(($i - 1))]}" app="^${CASA[(($i - 1))]}.*$" space=1
+    yabai -m rule --add label="casa_${CASA[(($i - 1))]}" app="^${CASA[(($i - 1))]}.*$" space=^1
 done
 
+## SPACE 4
+MEDIA=(
+    Spotify
+    Music
+)
+
+for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
+	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=^4
+done
+
+## SPACE 5
+OTHER=(
+	Inkscape
+    Skim
+)
+
+for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
+	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=^5
+done
+
+## SPACE 6
+CODE=(
+	Code
+)
+
+for ((i = 1; i <= "${#CODE[@]}"; i++)); do
+	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=^6
+done
+
+## SPACE 7
+TERMCONF=(
+    Sublime Text
+    Transmit
+)
+
+for ((i = 1; i <= "${#TERMCONF[@]}"; i++)); do
+    yabai -m rule --add label="termconf_${TERMCONF[(($i - 1))]}" app="^${TERMCONF[(($i - 1))]}.*$" space=^7
+done
+
+## SPACE 8
+MAIL=(
+	Mimestream
+    Thunderbird Daily
+)
+
+for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
+	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=^8
+done
+
+## SPACE 10
 SOCIAL=(
     Slack
 	Discord
@@ -97,57 +153,7 @@ SOCIAL=(
 )
 
 for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
-	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=10
-done
-
-MEDIA=(
-    Spotify
-    Music
-)
-
-for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
-	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=4
-done
-
-OTHER=(
-	Inkscape
-)
-
-for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
-	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=5
-done
-
-CODE=(
-	Code
-)
-
-for ((i = 1; i <= "${#CODE[@]}"; i++)); do
-	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=6
-done
-
-TERMCONF=(
-    Sublime Text
-)
-
-for ((i = 1; i <= "${#TERMCONF[@]}"; i++)); do
-    yabai -m rule --add label="termconf_${TERMCONF[(($i - 1))]}" app="^${TERMCONF[(($i - 1))]}.*$" space=7
-done
-
-MAIL=(
-	Mimestream
-    Thunderbird Daily
-)
-
-for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
-	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=8
-done
-
-READ=(
-    Skim
-)
-
-for ((i = 1; i <= "${#READ[@]}"; i++)); do
-    yabai -m rule --add label="read_${READ[(($i - 1))]}" app="^${READ[(($i - 1))]}.*$" space=5
+	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=^10 | yabai -m config --space 10 layout stack | yabai -m space 10 --padding abs:16:16:16:16
 done
 
 # STICKY apps
@@ -219,7 +225,6 @@ UNMANAGED=(
     SpaceLauncher
     Camtasia 2022
     Screen Sharing
-    Inkscape Settings
     MobileDeviceUpdater
 )
 
@@ -228,18 +233,25 @@ for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
 done
 
 # App rules - Use $( yabai -m query --windows | jq '.[].app' ) to find app name
+# Automatically float non-resizable windows, such as palettes, system settings etc.
+yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" or .\"is-floating\"" || yabai -m window $YABAI_WINDOW_ID --toggle float'
 
 # Apps notifications (testing..)
-yabai -m rule --add app="^Google Chrome$" title="^Typhon Notification$" manage=off
-yabai -m rule --add app="^DuckDuckGo$" title="^General|Settings|Software Update&" manage=off
 
 # Exclude problematic apps from being managed:
-yabai -m rule --add label="Finder" app="^Finder$" title="^(Co(py|nnect)|Move|Info|Pref)&" manage=off
-yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
-yabai -m rule --add label="Select file to save to" app="^Inkscape$" title="Select file to save to" manage=off
-yabai -m rule --add label="Thunderbird" app="^Thunderbird Daily$" title="^(Write:|Sending Message -)$" manage=off
-yabai -m rule --add label="Safari" app="^Safari$" title="^General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance$" manage=off
-yabai -m rule --add label="Chrome" app="^Google Chrome$" title="^General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance$" manage=off
-yabai -m rule --add label="Mimestream" app="^Mimestream$" title="^General|(Account|Template|Signature|Filter|Lab)s|Viewing|Composing|Sidebar & List&" manage=off
+#yabai -m rule --add label="PhpStorm" app="^PhpStorm$" title!="PhpStorm" manage=off
+#yabai -m rule --add label="Settings" app="^PhpStorm$" title="Settings|CLI Interpreters|Keyboard Shortcut" manage=off
+yabai -m rule --add app="^Inkscape$" title!="Inkscape" manage=off
+yabai -m rule --add app="^Inkscape$" title="Inkscape. Draw freely." manage=off
+
+# Browsers
+yabai -m rule --add app="^Safari$" title!="^Safari$" manage=off
+yabai -m rule --add app="^DuckDuckGo$" title!="^New Tab$" manage=off
+yabai -m rule --add app="^Google Chrome$" title!="New Tab" manage=off
+#yabai -m rule --add app="^Firefox$" title!="Mozilla Firefox" manage=off
+
+# Email apps
+yabai -m rule --add label="Mimestream" app="^Mimestream$" title!="Inbox.*" manage=off
+yabai -m rule --add label="Thunderbird Daily" app="^Thunderbird Daily$" title!="Inbox.*" manage=off
 
 echo "yabai configuration loaded.."

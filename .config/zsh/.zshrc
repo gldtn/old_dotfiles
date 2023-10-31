@@ -1,29 +1,21 @@
 export PATH=$PATH:$HOME/.local/bin:$HOME/.composer/vendor/bin:$PATH
 
+# Laravel HERD
+export PATH="/Users/gldtn/Library/Application Support/Herd/bin/":$PATH
+export PHP_INI_SCAN_DIR="/Users/gldtn/Library/Application Support/Herd/config/php/":$PHP_INI_SCAN_DIR
+
+# Herd injected PHP 8.2 configuration.
+export HERD_PHP_82_INI_SCAN_DIR="/Users/gldtn/Library/Application Support/Herd/config/php/82/"
+
+# Herd injected PHP 8.3 configuration.
+export HERD_PHP_83_INI_SCAN_DIR="/Users/gldtn/Library/Application Support/Herd/config/php/83/"
+
+# Herd injected PHP 8.1 configuration.
+export HERD_PHP_81_INI_SCAN_DIR="/Users/gldtn/Library/Application Support/Herd/config/php/81/"
+
 # Source configs
-source "$ZDOTDIR/userconfig.zsh"
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/plugins.zsh"
 
-# functions
-function br {
-    local cmd cmd_file code
-    cmd_file=$(mktemp)
-    if broot --outcmd "$cmd_file" "$@"; then
-        cmd=$(<"$cmd_file")
-        command rm -f "$cmd_file"
-        eval "$cmd"
-    else
-        code=$?
-        command rm -f "$cmd_file"
-        return "$code"
-    fi
-}
-
-
-# Case Insensitive Tab Completion
-autoload -Uz compinit && compinit
-zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
-
-# fzf - Fuzzy finder
-[ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
+# Source end of files configs
+source "$ZDOTDIR/userconfig.zsh"

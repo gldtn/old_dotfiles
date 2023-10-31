@@ -116,13 +116,17 @@ alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 alt - f : yabai -m window --toggle float --grid 4:4:1:1:2:2;
 
 # Picture-in-picture
-alt + shift - p : yabai -m window --toggle sticky --toggle pip
+hyper - p : yabai -m window --toggle sticky --toggle pip
 
 # Toggle window split type
 alt - s : yabai -m window --toggle split
 
 # Toggle sticky (window appear in all windows)
 alt - v : yabai -m window --toggle sticky --toggle float --grid 3:3:3:0:1:3;
+alt - t: yabai -m window --layer (if [ (yabai -m query --windows --window | jq --raw-output .layer) = 'below' ]; echo 'normal'; else; echo 'below'; end)
+# Stack layout
+alt + shift - n : yabai -m window --focus stack.next
+alt + shift - p : yabai -m window --focus stack.prev
 
 # Restart Yabai
 meh - z : yabai --restart-service

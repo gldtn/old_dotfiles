@@ -51,9 +51,8 @@ alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 
 # Yabai/SKHD
 configDIR='$HOME/.config'
-alias yapp="yabai -m query --windows | jq '.[].app'"
-alias ytitle="yabai -m query --windows | jq '.[].title'"
+alias yabai.a="yabai -m query --windows | jq '.[].app'"
+alias yabai.t="yabai -m query --windows | jq '.[].title'"
 alias skhdrc="open -a $EDITOR $configDIR/skhd/skhdrc"
 alias yabairc="open -a $EDITOR $configDIR/yabai/yabairc"
-alias r.sbar="echo Restarting SketchyBar.. && brew services restart sketchybar"
-alias upyabai='echo Updating Yabai HEAD.. && $HOME/.config/yabai/./update.sh'
+alias yabai.up='echo Updating Yabai HEAD.. && $HOME/.config/yabai/./update.sh'

@@ -10,9 +10,14 @@ export XDG_DATA_HOME=$HOME/.local/share
 export LANG=en_US.UTF-8
 export TERMINAL="kitty"
 export TERM="xterm-256color"
-export BROWSER="Google Chrome"
+export BROWSER="Firefox"
 export EDITOR="/Applications/Sublime\ Text.app/Contents/MacOS/sublime_text"
 export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
 
-# Color scripts 
+# Color scripts
 $HOME/.config/colorscripts/crunchbang.sh
+
+# Setting PATH for Python 3.11
+# The original version is saved in .zprofile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin:${PATH}"
+export PATH
