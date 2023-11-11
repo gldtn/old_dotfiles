@@ -1,5 +1,6 @@
 # Homebrew stuff
 eval "$(/opt/homebrew/bin/brew shellenv)"
+export HOMEBREW_FORCE_BREWED_CURL=1
 
 # XDG Paths
 export XDG_CONFIG_HOME=$HOME/.config
@@ -14,9 +15,6 @@ export BROWSER="Firefox"
 export EDITOR="zed --wait"
 export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
 
-# Set current theme for kitty
-# current_theme=$(awk '$1=="include" {print $2}' "$HOME/.config/kitty/kitty.conf")
-# kitty @ set-colors --all --configured "$HOME/.config/kitty/themes/$current_theme"
 # Color scripts
 $HOME/.config/colorscripts/crunchbang.sh
 
