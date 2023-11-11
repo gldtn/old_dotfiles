@@ -1,4 +1,4 @@
-### Change/focus spaces
+## Change/focus spaces
 alt - 1 : yabai -m space --focus 1
 alt - 2 : yabai -m space --focus 2
 alt - 3 : yabai -m space --focus 3
@@ -10,7 +10,7 @@ alt - 8 : yabai -m space --focus 8
 alt - 9 : yabai -m space --focus 9
 alt - 0 : yabai -m space --focus 10
 
-### Send window to space and follow focus
+## Send window to space and follow focus
 alt + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1
 alt + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
 alt + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3
@@ -22,14 +22,14 @@ alt + shift - 8 : yabai -m window --space 8; yabai -m space --focus 8
 alt + shift - 9 : yabai -m window --space 9; yabai -m space --focus 9
 alt + shift - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
-### Focus spaces
+## Focus spaces
 #   (options: prev, next, first, last, recent)
 #   (keys: \, [, ] ) - listed in order of the following;
 alt - 0x2A  : yabai -m space --focus recent
 alt - 0x21  : yabai -m space --focus prev || yabai -m space --focus last
 alt - 0x1E  : yabai -m space --focus next || yabai -m space --focus first
 
-### Send window to desktop/DON'T follow focus
+## Send window to desktop/DON'T follow focus
 hyper - 1 : yabai -m window --space 1;
 hyper - 2 : yabai -m window --space 2;
 hyper - 3 : yabai -m window --space 3;
@@ -41,7 +41,7 @@ hyper - 8 : yabai -m window --space 8;
 hyper - 9 : yabai -m window --space 9;
 hyper - 0 : yabai -m window --space 10;
 
-### Focus window
+## Focus window
 #   (options: north, east, south, west)
 alt - h : yabai -m window --focus west  || yabai -m display --focus west
 alt - j : yabai -m window --focus south || yabai -m display --focus south
@@ -53,7 +53,7 @@ alt - down 	: yabai -m window --focus south || yabai -m display --focus south
 alt - up 	: yabai -m window --focus north || yabai -m display --focus north
 alt - right : yabai -m window --focus east  || yabai -m display --focus east
 
-### Warp/insert window
+## Warp/insert window
 #   (options: north, east, south, west)
 alt + shift - h : yabai -m window --warp west  || $(yabai -m window --display west; yabai -m display --focus west)
 alt + shift - j : yabai -m window --warp south || $(yabai -m window --display south; yabai -m display --focus south)
@@ -65,7 +65,7 @@ alt + shift - down : yabai -m window --warp south || $(yabai -m window --display
 alt + shift - up : yabai -m window --warp north   || $(yabai -m window --display north; yabai -m display --focus north)
 alt + shift - right : yabai -m window --warp east || $(yabai -m window --display east; yabai -m display --focus east)
 
-### Swap window
+## Swap window
 #   (keys: [, ] ) - listed in order of the following;
 alt + shift - 0x21 : yabai -m window --swap west  || $(yabai -m window --display west; yabai -m display --focus west)
 alt + shift - 0x1E : yabai -m window --swap east || $(yabai -m window --display east; yabai -m display --focus east)
@@ -87,27 +87,23 @@ alt - p : yabai -m window --toggle zoom-parent
 alt - m : yabai -m window --toggle zoom-fullscreen
 alt - n : yabai -m window --toggle native-fullscreen
 
-# Resize windows
-meh - h : yabai -m window --resize left:-50:0;    \
-			yabai -m window --resize right:-50:0
-meh - j : yabai -m window --resize bottom:0:50;   \
-			yabai -m window --resize top:0:50
-meh - k : yabai -m window --resize top:0:-50;     \
-			yabai -m window --resize bottom:0:-50
-meh - l : yabai -m window --resize right:50:0;    \
-			yabai -m window --resize left:50:0
-# Alternatively, use the arrow keys
-meh - left : yabai -m window --resize left:-50:0;   \
-			yabai -m window --resize right:-50:0
-meh - down : yabai -m window --resize bottom:0:50;  \
-			yabai -m window --resize top:0:50
-meh - up : yabai -m window --resize top:0:-50;     	\
-			yabai -m window --resize bottom:0:-50
-meh - right : yabai -m window --resize right:50:0;  \
-			yabai -m window --resize left:50:0
+## Resize windows
+# change master width
+ctrl + shift - h : ~/.config/skhd/resizeWindow.sh -h
+ctrl + shift - l : ~/.config/skhd/resizeWindow.sh -l
+# alternatively, use the arrow keys
+ctrl + shift - left : ~/.config/skhd/resizeWindow.sh -h
+ctrl + shift - right : ~/.config/skhd/resizeWindow.sh -l
 
-# Balance size of windows
-meh - 0 : yabai -m space --balance
+# change split height
+ctrl + shift - u : ~/.config/skhd/resizeWindow.sh -u
+ctrl + shift - d : ~/.config/skhd/resizeWindow.sh -d
+# alternatively, use the arrow keys
+ctrl + shift - up : ~/.config/skhd/resizeWindow.sh -u
+ctrl + shift - down : ~/.config/skhd/resizeWindow.sh -d
+
+# balance size of windows
+ctrl + shift - 0 : yabai -m space --balance
 
 # Enable / Disable gaps in current workspace
 alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
