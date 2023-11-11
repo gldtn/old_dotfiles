@@ -60,7 +60,7 @@ LAYOUT=(
 WINDOWS=(
     window_placement second_child
     window_shadow float
-    window_opacity on
+    window_opacity off
     active_window_opacity 1.0
     normal_window_opacity 0.97
     window_opacity_duration 0.15
@@ -116,6 +116,7 @@ done
 ## SPACE 6
 CODE=(
 	Code
+	Zed Preview
 )
 
 for ((i = 1; i <= "${#CODE[@]}"; i++)); do
@@ -257,4 +258,4 @@ yabai -m rule --add label="Thunderbird Daily" app="^Thunderbird Daily$" title!="
 
 # # JankyBorders
 # https://github.com/FelixKratz/JankyBorders
-borders active_color=0xff9680FA inactive_color=0xff44475A width=2.0 2>/dev/null 1>&2 &
+borders active_color=0xff9680FA inactive_color=0xff44475A width=3.0 2>/dev/null 1>&2 &
