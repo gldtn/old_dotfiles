@@ -188,6 +188,7 @@ UNMANAGED=(
     Activity Monitor
     Software Update
     Archive Utility
+    Opal Composer
     Disk Utility
     Calculator
     Dictionary
@@ -254,4 +255,6 @@ yabai -m rule --add app="^Google Chrome$" title!="New Tab" manage=off
 yabai -m rule --add label="Mimestream" app="^Mimestream$" title!="Inbox.*" manage=off
 yabai -m rule --add label="Thunderbird Daily" app="^Thunderbird Daily$" title!="Inbox.*" manage=off
 
-echo "yabai configuration loaded.."
+# # JankyBorders
+# https://github.com/FelixKratz/JankyBorders
+borders active_color=0xff9680FA inactive_color=0xff44475A width=2.0 2>/dev/null 1>&2 &
