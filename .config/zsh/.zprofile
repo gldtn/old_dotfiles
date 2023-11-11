@@ -11,9 +11,12 @@ export LANG=en_US.UTF-8
 export TERMINAL="kitty"
 export TERM="xterm-256color"
 export BROWSER="Firefox"
-export EDITOR="/Applications/Sublime\ Text.app/Contents/MacOS/sublime_text"
+export EDITOR="zed --wait"
 export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
 
+# Set current theme for kitty
+current_theme=$(awk '$1=="include" {print $2}' "$HOME/.config/kitty/kitty.conf")
+kitty @ set-colors --all --configured "$HOME/.config/kitty/themes/$current_theme"
 # Color scripts
 $HOME/.config/colorscripts/crunchbang.sh
 

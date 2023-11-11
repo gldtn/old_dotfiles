@@ -26,12 +26,12 @@ alias cat="bat"
 ## https://github.com/sharkdp/fd
 alias find="fd"
 
-# LS replacement - Exa
-## https://github.com/ogham/exa
+# LS replacement - eza
+## https://github.com/eza-community/eza
 macIgnore=$(<$ZDOTDIR/macignore.zsh)
-alias ls='exa -a --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
-alias ll='exa -alhH --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
-alias tr='exa -alhHT --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
+alias ls='eza -a --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
+alias ll='eza -alhH --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
+alias tr='eza -alhHT --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
 
 # Brew
 alias blc="brew list --cask"
