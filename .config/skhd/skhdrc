@@ -96,11 +96,11 @@ ctrl + shift - left : ~/.config/skhd/resizeWindow.sh -h
 ctrl + shift - right : ~/.config/skhd/resizeWindow.sh -l
 
 # change split height
-ctrl + shift - u : ~/.config/skhd/resizeWindow.sh -u
-ctrl + shift - d : ~/.config/skhd/resizeWindow.sh -d
+ctrl + shift - k : ~/.config/skhd/resizeWindow.sh -k
+ctrl + shift - j : ~/.config/skhd/resizeWindow.sh -j
 # alternatively, use the arrow keys
-ctrl + shift - up : ~/.config/skhd/resizeWindow.sh -u
-ctrl + shift - down : ~/.config/skhd/resizeWindow.sh -d
+ctrl + shift - up : ~/.config/skhd/resizeWindow.sh -k
+ctrl + shift - down : ~/.config/skhd/resizeWindow.sh -j
 
 # balance size of windows
 ctrl + shift - 0 : yabai -m space --balance

@@ -2,7 +2,7 @@
 
 WINDOW_RESIZE_AMOUNT=30
 
-if [[ $1 = "-d" ]]; then
+if [[ $1 = "-j" ]]; then
     SPLIT_CHILD=$(yabai -m query --windows --window | jq '.["split-child"]')
 
     if [[ $SPLIT_CHILD == "\"first_child\"" ]]; then
@@ -12,7 +12,7 @@ if [[ $1 = "-d" ]]; then
     if [[ $SPLIT_CHILD == "\"second_child\"" ]]; then
         yabai -m window --resize top:0:$WINDOW_RESIZE_AMOUNT
     fi
-elif [[ $1 = "-u" ]]; then
+elif [[ $1 = "-k" ]]; then
     SPLIT_CHILD=$(yabai -m query --windows --window | jq '.["split-child"]')
 
     if [[ $SPLIT_CHILD == "\"first_child\"" ]]; then
