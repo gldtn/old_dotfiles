@@ -54,7 +54,7 @@ LAYOUT=(
     bottom_padding 6
     left_padding 6
     right_padding 6
-    window_gap 6
+    window_gap 8
 )
 
 WINDOWS=(
@@ -258,4 +258,4 @@ yabai -m rule --add label="Thunderbird Daily" app="^Thunderbird Daily$" title!="
 
 # # JankyBorders
 # https://github.com/FelixKratz/JankyBorders
-borders active_color=0xff9680FA inactive_color=0xff44475A width=3.0 2>/dev/null 1>&2 &
+borders active_color=0xff9680FA inactive_color=0xff44475A width=4.0 2>/dev/null 1>&2 &

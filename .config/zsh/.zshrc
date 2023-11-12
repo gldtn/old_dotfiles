@@ -19,7 +19,6 @@ export HERD_PHP_81_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/p
 # Source configs
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/plugins.zsh"
-source "$ZDOTDIR/functions.zsh"
 
 # Source end of files configs
 source "$ZDOTDIR/userconfig.zsh"

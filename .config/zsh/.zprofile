@@ -1,6 +1,6 @@
 # Homebrew stuff
 eval "$(/opt/homebrew/bin/brew shellenv)"
-export HOMEBREW_FORCE_BREWED_CURL=1
+#export HOMEBREW_FORCE_BREWED_CURL=1
 
 # XDG Paths
 export XDG_CONFIG_HOME=$HOME/.config

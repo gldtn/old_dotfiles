@@ -1,3 +1,7 @@
+# Toggle theme
+# Set the alias with a placeholder for a user-defined argument
+alias tt="toggle-theme $1"
+
 # CD replacement - Zoxide
 ## https://github.com/ajeetdsouza/zoxide
 alias cd="z"
