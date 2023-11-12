@@ -1,6 +1,13 @@
 #!/bin/zsh
+## kitty toggle-theme
+### https://github.com/gldtn
 
 toggle-theme() {
+
+    name="kitty toggle-theme"
+    version="1.1"
+    owner="gldtn - https://github.com/gldtn"
+
     # Retrieve the currently set theme in the kitty config file
     current_theme=$(awk '$1=="include" {print $2}' "$HOME/.config/kitty/kitty.conf")
 
@@ -30,43 +37,46 @@ toggle-theme() {
 
     # Display usage instructions when -h or --help is used
     if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-        echo "Toggle theme v1.0 create by gldtn - https://github.com/gldtn"
+        echo -e "\e[1m$name\e[0m - \e[92m$version\e[0m"
         echo ""
-        echo "Usage:"
-        echo "'toggle-theme list' - List all available themes with their specific index"
-        echo "'toggle-theme index' - Change theme to specific index, i.e > toggle-theme 3"
-        echo "'toggle-theme random' - Change to a random theme specified in your toggle-theme.zsh"
+        echo -e "\e[1mUsage:\e[0m"
+        echo -e "'\e[92mtoggle-theme list\e[0m' - List all available themes with their specific index"
+        echo -e "'\e[92mtoggle-theme index\e[0m' - Change theme to a specific index, e.g. > \e[92mtoggle-theme 3\e[0m"
+        echo -e "'\e[92mtoggle-theme random\e[0m' - Change to a random theme specified in your toggle-theme.zsh"
+        echo ""
+        echo "To add a theme, edit toggle-theme.zsh and add your theme to a new line under theme_names & theme_files"
         return
     fi
 
     # List themes
-    if [ "$1" = "list" ]; then
+    if [ "$1" = "-l" ] || [ "$1" = "--list" ]; then
         for ((index = 1; index <= ${#theme_names[@]}; index++)); do
-            echo "$index: ${theme_names[index]} - ${theme_files[index]}"
+            echo "\e[92m$index\e[0m : \e[96m${theme_names[index]}\e[0m - \e[94m${theme_files[index]}\e[0m"
         done
         return
     fi
 
-    if [ "$1" = "random" ]; then
+    if [ "$1" = "-r" ] || [ "$1" = "--random" ]; then
         # Select a random index within the range of available themes
-        index=$(( RANDOM % ${#themes} + 1 ))
+        index=$(( RANDOM % ${#theme_files} + 1 ))
         # If the randomly selected theme matches the current theme, switch to the next theme
         if [ "$current_theme" = "${themes[index]}" ]; then
-            index=$(( (index % ${#themes}) + 1 ))  # Change to the next theme
+            index=$(( (index % ${#theme_files}) + 1 ))  # Change to the next theme
         fi
-    elif [ -n "$1" ] && [ "$1" -ge 1 ] && [ "$1" -le ${#themes} ]; then
+    elif [ -n "$1" ] && [ "$1" -ge 1 ] && [ "$1" -le ${#theme_files} ]; then
         # Use the provided index if it's valid
         index=$1
     else
         # Display usage instructions for invalid selections
         echo "Usage:" 
-        echo "'toggle-theme list'"
-        echo "'toggle-theme index'"
-        echo "'toggle-theme random'"
+        echo "'\e[92mtoggle-theme index\e[0m'"
+        echo "'\e[92mtoggle-theme --help\e[0m'"
+        echo "'\e[92mtoggle-theme --list\e[0m'"
+        echo "'\e[92mtoggle-theme --random\e[0m'"
         return
     fi
 
-    new_theme="${themes[index]}"  # Set the new theme based on the selected index
+    new_theme="${theme_files[index]}"  # Set the new theme based on the selected index
 
     if ! grep -q "^include" "$HOME/.config/kitty/kitty.conf"; then
         # Check if the 'include' directive exists in the kitty config file
