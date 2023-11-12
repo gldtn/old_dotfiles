@@ -23,7 +23,7 @@ toggle-theme() {
         "monokai-pro-spectrum"
     )
 
-    # Theme files, aligned by index with theme_names
+    # Theme files
     theme_files=(
         "themes/nord.conf"
         "themes/dracula.conf"
@@ -37,12 +37,12 @@ toggle-theme() {
 
     # Display usage instructions when -h or --help is used
     if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
-        echo -e "\e[1m$name\e[0m - \e[92m$version\e[0m"
+        echo -e "\e[1m$name\e[0m - \e[96m$version\e[0m"
         echo ""
-        echo -e "\e[1mUsage:\e[0m"
-        echo -e "'\e[92mtoggle-theme list\e[0m' - List all available themes with their specific index"
-        echo -e "'\e[92mtoggle-theme index\e[0m' - Change theme to a specific index, e.g. > \e[92mtoggle-theme 3\e[0m"
-        echo -e "'\e[92mtoggle-theme random\e[0m' - Change to a random theme specified in your toggle-theme.zsh"
+        echo -e "\e[1mUsage:\e[0m \e[92mtoggle-theme command\e[0m"
+        echo -e "\e[92m#\e[0m               - Change theme to a specific index, i.e. > \e[92mtoggle-theme 3\e[0m"
+        echo -e "\e[92m-r --random\e[0m     - Change to a random theme specified in your toggle-theme.zsh"
+        echo -e "\e[92m-l --list\e[0m       - List all available themes with their specific index"
         echo ""
         echo "To add a theme, edit toggle-theme.zsh and add your theme to a new line under theme_names & theme_files"
         return
