@@ -28,6 +28,17 @@ toggle-theme() {
         "themes/monokai-pro-spectrum.conf"
     )
 
+    # Display usage instructions when -h or --help is used
+    if [ "$1" = "-h" ] || [ "$1" = "--help" ]; then
+        echo "Toggle theme v1.0 create by gldtn - https://github.com/gldtn"
+        echo ""
+        echo "Usage:"
+        echo "'toggle-theme list' - List all available themes with their specific index"
+        echo "'toggle-theme index' - Change theme to specific index, i.e > toggle-theme 3"
+        echo "'toggle-theme random' - Change to a random theme specified in your toggle-theme.zsh"
+        return
+    fi
+
     # List themes
     if [ "$1" = "list" ]; then
         for ((index = 1; index <= ${#theme_names[@]}; index++)); do
@@ -48,7 +59,10 @@ toggle-theme() {
         index=$1
     else
         # Display usage instructions for invalid selections
-        echo "Invalid theme selection. Usage: 'toggle-theme index' or 'toggle-theme random'"
+        echo "Usage:" 
+        echo "'toggle-theme list'"
+        echo "'toggle-theme index'"
+        echo "'toggle-theme random'"
         return
     fi
 
