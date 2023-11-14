@@ -1,0 +1,18 @@
+import = ["~/.config/alacritty/theme_loader.toml"]
+#ipc_socket = true
+
+[window]
+  padding.x = 16
+  padding.y = 16
+  dynamic_padding = false
+  decorations = "Buttonless"
+
+[font]
+  normal.family = "FiraCode Nerd Font"
+  normal.style = "Light"
+  bold.family = "Monolisa"
+  bold.style = "Regular"
+  size = 18
+
+[scrolling]
+  history = 10000
