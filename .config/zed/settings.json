@@ -1,0 +1,85 @@
+/**
+ * Zed Settings
+ * docs: https://zed.dev/docs/configuring-zed
+ **/
+{
+    //"base_keymap": "SublimeText",
+    "base_keymap": "VSCode",
+    "theme": "Rosé Pine Moon",
+    "telemetry": {
+        "diagnostics": false,
+        "metrics": false
+    },
+
+    /**
+     * Typography
+     **/
+    // Editor
+    "buffer_font_family": "MonoLisa",
+    "buffer_font_features": {
+        "liga": true
+    },
+    "buffer_line_height": {
+        "custom": 1.9
+    },
+    "buffer_font_size": 18,
+    // Terminal
+    "terminal": {
+        //"shell": "system",
+        "font_size": 16
+    },
+
+    /**
+     * Editor defaults
+     **/
+    "tab_size": 4,
+    "soft_wrap": "editor_width",
+    "collaboration_panel": {
+        "dock": "right"
+    },
+    "project_panel": {
+        "dock": "right",
+        "git_status": true
+    },
+    "features": {
+        "copilot": false
+    },
+    // "excluded_patterns": [
+    //     ".DS_Store",
+    //     "*-lock.*"
+    // ],
+
+    /**
+     * Formatter
+     **/
+    "enable_language_server": true,
+    "lsp": {
+        // JSON
+        "json-language-server": {
+            "initialization_options": {
+                "format_on_save": "off"
+            }
+        },
+        // Rust
+        "rust-analyzer": {
+            "initialization_options": {
+                "checkOnSave": {
+                    "command": "clippy" // rust-analyzer.checkOnSave.command
+                },
+                "inlayHints": {
+                    "maxLength": null,
+                    "lifetimeElisionHints": {
+                        "useParameterNames": true,
+                        "enable": "skip_trivial"
+                    },
+                    "closureReturnTypeHints": {
+                        "enable": "always"
+                    }
+                }
+            }
+        },
+        "git": {
+            "git_gutter": "tracked_files"
+        }
+    }
+}
