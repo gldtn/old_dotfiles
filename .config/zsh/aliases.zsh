@@ -1,7 +1,7 @@
 # My config dir
 configDIR='$HOME/.config'
 
-# toggle-theme function
+# alacritty toggle-theme function
 toggle-theme() {
     python3 $HOME/.config/alacritty/toggle-theme.py "$@"
 }
