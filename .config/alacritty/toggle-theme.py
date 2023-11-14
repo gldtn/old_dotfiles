@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+### Toggle-theme v1.0 by gldtn
+## You may need to create an empty theme_loader.toml file to alacritty folder
+## https://github.com/gldtn/dotfiles/tree/main/.config/alacritty
+
 import os
 import shutil
 import sys
