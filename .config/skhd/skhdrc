@@ -132,10 +132,13 @@ meh - space : sketchybar --bar hidden=toggle
 
 ## Hotkeys to launch Apps
 # Launch a new terminal
-hyper - return : /Applications/kitty.app/Contents/MacOS/kitty --single-instance -d ~
+
+hyper - t : open -n /Applications/Alacritty.app
+hyper - return : open -n /Applications/Alacritty.app
+###--socket "$XDG_RUNTIME_DIR/alacritty.sock"
 
 # Open VSCode
-hyper - c : code
+hyper - c : zed
 
 # open mpv
 hyper - m : open -na /Applications/mpv.app #$(pbpaste)

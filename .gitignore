@@ -2,9 +2,14 @@
 .DS_Store
 .AppleDouble
 .LSOverride
+.*_history
+.CFUserTextEncoding
+.bashrc
+.lesshst
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*

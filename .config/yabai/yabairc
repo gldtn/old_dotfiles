@@ -117,6 +117,7 @@ done
 CODE=(
 	Code
 	Zed Preview
+    Sublime Text
 )
 
 for ((i = 1; i <= "${#CODE[@]}"; i++)); do
@@ -125,7 +126,6 @@ done
 
 ## SPACE 7
 TERMCONF=(
-    Sublime Text
     Transmit
 )
 
@@ -245,7 +245,7 @@ yabai -m signal --add event=window_created action='yabai -m query --windows --wi
 #yabai -m rule --add label="Settings" app="^PhpStorm$" title="Settings|CLI Interpreters|Keyboard Shortcut" manage=off
 yabai -m rule --add app="^Inkscape$" title!="Inkscape" manage=off
 yabai -m rule --add app="^Inkscape$" title="Inkscape. Draw freely." manage=off
-
+yabai -m rule --add app="Zed Preview" title="^Open$" manage=off
 # Browsers
 yabai -m rule --add app="^Safari$" title!="^Safari$" manage=off
 yabai -m rule --add app="^DuckDuckGo$" title!="^New Tab$" manage=off

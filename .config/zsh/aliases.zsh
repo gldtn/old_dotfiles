@@ -1,6 +1,15 @@
-# Toggle theme
-# Set the alias with a placeholder for a user-defined argument
-alias tt="toggle-theme $1"
+# My config dir
+configDIR='$HOME/.config'
+
+# toggle-theme function
+toggle-theme() {
+    python3 $HOME/.config/alacritty/toggle-theme.py "$@"
+}
+# toggle-theme short alias
+alias tt="toggle-theme"
+
+#kitty 
+alias st="switch-theme $1"
 
 # CD replacement - Zoxide
 ## https://github.com/ajeetdsouza/zoxide
@@ -54,7 +63,6 @@ alias yadm.r="yadm pull --rebase origin main" # Rebase
 alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 
 # Yabai/SKHD
-configDIR='$HOME/.config'
 alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
 alias skhdrc="open -a $EDITOR $configDIR/skhd/skhdrc"

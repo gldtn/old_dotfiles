@@ -9,7 +9,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 
 # Environment variables set everywhere
 export LANG=en_US.UTF-8
-export TERMINAL="kitty"
+export TERMINAL="alacritty"
 export TERM="xterm-256color"
 export BROWSER="Firefox"
 export EDITOR="zed --wait"
