@@ -7,8 +7,8 @@
     "base_keymap": "VSCode",
     "theme": "Rosé Pine Moon",
     "telemetry": {
-        "diagnostics": false,
-        "metrics": false
+        "diagnostics": true,
+        "metrics": true
     },
 
     /**
@@ -26,7 +26,8 @@
     // Terminal
     "terminal": {
         //"shell": "system",
-        "font_size": 16
+        "font_size": 16,
+        "liga": true
     },
 
     /**
