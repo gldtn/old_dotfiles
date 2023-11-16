@@ -1,5 +1,4 @@
-import = ["~/.config/alacritty/theme_loader.toml"]
-#ipc_socket = true
+import = ["/Users/gldtn/.config/alacritty/themes/rose-pine-moon.toml"]
 
 [window]
   padding.x = 16
