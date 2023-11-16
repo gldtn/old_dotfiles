@@ -8,7 +8,7 @@ toggle-theme() {
 # toggle-theme short alias
 alias tt="toggle-theme"
 
-#kitty 
+#kitty
 alias st="switch-theme $1"
 
 # CD replacement - Zoxide
@@ -47,12 +47,12 @@ alias ll='eza -alhH --icons --git --git-ignore -I="$macIgnore" -s=type --color=a
 alias tr='eza -alhHT --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
 
 # Brew
-alias blc="brew list --cask"
-alias blp="brew list --pinned"
-alias blf="brew list --formula"
-alias buc="brew update && brew upgrade --cask"
-alias buf="brew update && brew upgrade --formula" # or brew outdated | xargs brew install
-alias bup="brew update && brew outdated && brew upgrade && brew upgrade --cask && brew cleanup"
+alias brew.lc="brew list --cask"
+alias brew.lp="brew list --pinned"
+alias brew.lf="brew list --formula"
+alias brew.uc="brew update && brew upgrade --cask"
+alias brew.uf="brew update && brew upgrade --formula" # or brew outdated | xargs brew install
+alias brew.up="brew update && brew outdated && brew upgrade && brew upgrade --cask && brew cleanup"
 
 # YADM/Dotfiles
 alias yadm.s="yadm status"
