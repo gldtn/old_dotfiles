@@ -33,9 +33,15 @@ alias find="fd"
 # LS replacement - eza
 ## https://github.com/eza-community/eza
 macIgnore=$(<$ZDOTDIR/macignore.zsh)
+alias l.='eza -a --git-ignore | egrep "^\."'
 alias ls='eza -a --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
 alias ll='eza -alhH --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
 alias tr='eza -alhHT --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
+
+# Colorize grep output (good for log files)
+alias grep='grep --color=auto'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
 
 # Brew
 alias brew.lc="brew list --cask"
@@ -58,7 +64,7 @@ alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
 alias skhdrc="$EDITOR $XDG_CONFIG_HOME/skhd/skhdrc"
 alias yabairc="$EDITOR $XDG_CONFIG_HOME/yabai/yabairc"
-alias yabai.up='$HOME/.config/yabai/./update.sh'
+alias yabai.up="$HOME/.config/yabai/./update.sh"
 
 # Alacritty
-alias alacritty-new='alacritty msg create-window; open -a Alacritty'
+alias alacritty-new="alacritty msg create-window; open -a Alacritty"
