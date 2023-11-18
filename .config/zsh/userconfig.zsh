@@ -6,7 +6,7 @@ export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
 HISTFILE=$ZDOTDIR/.zsh_histfile 	# file to save history
 HISTSIZE=100000               		# history size in-memory
 SAVEHIST=1000000             	 	# history size in the file
-HISTORY_IGNORE="(ls|ls *|tr|ll|pwd|exit|clear|cd|cd *|cd -|z|eza|fastfetch|..|...|....|.....)"
+HISTORY_IGNORE="(ls|ls *|tr|ll|pwd|exit|clear|cd|cd *|cd -|z|z *|eza|fastfetch|..|...|....|.....)"
 
 ## Setopt
 # The meaning of these options can be found in man page of `zshoptions`.
