@@ -4,6 +4,12 @@ tt() { python3 $XDG_CONFIG_HOME/alacritty/toggle-theme.py "$@" }
 #kitty
 alias st="switch-theme $1"
 
+# fzf cd function
+fcd() {
+  local dir
+  dir=$(find ${1:-.} -type d -not -path '*/\.*' 2> /dev/null | fzf +m) && cd "$dir"
+}
+
 # CD replacement - Zoxide
 ## https://github.com/ajeetdsouza/zoxide
 alias cd="z"
@@ -17,7 +23,7 @@ alias update="sudo softwareupdate -i -a"
 
 # Source/edit ~/.zshrc
 alias s.zsh="source $ZDOTDIR/.zshrc"
-alias zshrc="open -a $EDITOR $ZDOTDIR/.zshrc"
+alias zshrc="$EDITOR $ZDOTDIR/.zshrc"
 
 # Python
 alias python="python3"
@@ -64,7 +70,7 @@ alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
 alias skhdrc="$EDITOR $XDG_CONFIG_HOME/skhd/skhdrc"
 alias yabairc="$EDITOR $XDG_CONFIG_HOME/yabai/yabairc"
-alias yabai.up="$HOME/.config/yabai/./update.sh"
+alias yabai.up="$XDG_CONFIG_HOME/yabai/./update.sh"
 
 # Alacritty
 alias alacritty-new="alacritty msg create-window; open -a Alacritty"

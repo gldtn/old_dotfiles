@@ -5,6 +5,7 @@
 .*_history
 .CFUserTextEncoding
 .bashrc
+*-lock.json
 .lesshst
 
 # Icon must end with two \r

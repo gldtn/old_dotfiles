@@ -1,18 +1,26 @@
-# PATH
-export PATH=$PATH:$HOME/.local/bin:$HOME/.composer/vendor/bin:$PATH
-
-# eza completions
-export FPATH="$HOME/.config/eza/completions/zsh:$FPATH"
-
-# Laravel HERD
-export PATH="$HOME/Library/Application Support/Herd/bin/":$PATH
-export PHP_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/":$PHP_INI_SCAN_DIR
-export HERD_PHP_82_INI_SCAN_DIR="$HOME/Library/Application Support/Herd/config/php/82/"
-
 # Source configs
 source "$ZDOTDIR/aliases.zsh"
 source "$ZDOTDIR/plugins.zsh"
+source "$ZDOTDIR/histconf.zsh"
 
-# Source end of files configs
-source "$ZDOTDIR/userconfig.zsh"
+# Add .zsh_functions to path
+autoload -Uz compinit && compinit
 fpath+=${ZDOTDIR:-~}/.zsh_functions
+
+# Explicitly source all files in .zsh_functions
+for file in "${ZDOTDIR:-~}"/.zsh_functions/*(.); do
+    source "$file"
+done
+
+# fzf - Fuzzy finder
+[ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
+
+# Case Insensitive Tab Completion
+zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}'
+
+## Load zoxide
+eval "$(zoxide init zsh)"
+
+## Load starship
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
