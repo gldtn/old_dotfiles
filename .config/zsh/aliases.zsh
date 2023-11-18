@@ -67,4 +67,7 @@ alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
 alias skhdrc="open -a $EDITOR $configDIR/skhd/skhdrc"
 alias yabairc="open -a $EDITOR $configDIR/yabai/yabairc"
-alias yabai.up='echo Updating Yabai HEAD.. && $HOME/.config/yabai/./update.sh'
+alias yabai.up='$HOME/.config/yabai/./update.sh'
+
+# Alacritty
+alias alacritty-new='alacritty msg create-window; open -a Alacritty'

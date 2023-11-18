@@ -128,16 +128,16 @@ alt + shift - p : yabai -m window --focus stack.prev
 meh - z : yabai --restart-service
 
 # Toggle sketchybar
-meh - space : sketchybar --bar hidden=toggle
+#meh - space : sketchybar --bar hidden=toggle
 
 ## Hotkeys to launch Apps
-# Launch a new terminal
 
-hyper - t : open -n /Applications/Alacritty.app
+# new terminals
 hyper - return : open -n /Applications/Alacritty.app
-###--socket "$XDG_RUNTIME_DIR/alacritty.sock"
+hyper - j : yabai -m window --insert south && alacritty-new
+hyper - h : yabai -m window --insert east && alacritty-new
 
-# Open VSCode
+# Open Zed
 hyper - c : zed
 
 # open mpv
