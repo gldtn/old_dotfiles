@@ -1,7 +1,3 @@
-## Load starship
-eval "$(starship init zsh)"
-export STARSHIP_CONFIG=$HOME/.config/starship/starship.toml
-
 ## History config
 HISTFILE=$ZDOTDIR/.zsh_histfile 	# file to save history
 HISTSIZE=100000               		# history size in-memory

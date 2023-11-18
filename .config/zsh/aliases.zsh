@@ -1,12 +1,5 @@
-# My config dir
-configDIR='$HOME/.config'
-
 # alacritty toggle-theme function
-toggle-theme() {
-    python3 $HOME/.config/alacritty/toggle-theme.py "$@"
-}
-# toggle-theme short alias
-alias tt="toggle-theme"
+tt() { python3 $XDG_CONFIG_HOME/alacritty/toggle-theme.py "$@" }
 
 #kitty
 alias st="switch-theme $1"
@@ -23,11 +16,8 @@ alias .....="z ../../../.."
 alias update="sudo softwareupdate -i -a"
 
 # Source/edit ~/.zshrc
-alias s.zsh="echo ZSH is being sourced.. && source $ZDOTDIR/.zshrc"
+alias s.zsh="source $ZDOTDIR/.zshrc"
 alias zshrc="open -a $EDITOR $ZDOTDIR/.zshrc"
-
-# Server -> Kitana
-
 
 # Python
 alias python="python3"
@@ -66,8 +56,8 @@ alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 # Yabai/SKHD
 alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
-alias skhdrc="open -a $EDITOR $configDIR/skhd/skhdrc"
-alias yabairc="open -a $EDITOR $configDIR/yabai/yabairc"
+alias skhdrc="$EDITOR $XDG_CONFIG_HOME/skhd/skhdrc"
+alias yabairc="$EDITOR $XDG_CONFIG_HOME/yabai/yabairc"
 alias yabai.up='$HOME/.config/yabai/./update.sh'
 
 # Alacritty
