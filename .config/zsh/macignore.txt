@@ -1,0 +1,1 @@
+ .DS_Store|.localized|.CFUserTextEncoding|*-lock.json|.lesshst|.*_history

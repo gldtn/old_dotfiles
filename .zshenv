@@ -1,5 +1,6 @@
 # zsh config dir
 ZDOTDIR=$HOME/.config/zsh
+export ZSH_COMPDUMP=$HOME/.cache/zsh/.zcompdump-$HOST
 
 # XDG Paths
 export XDG_CONFIG_HOME=$HOME/.config

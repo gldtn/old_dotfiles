@@ -1,3 +1,7 @@
+# switch between shells
+alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
+alias tofish="sudo chsh $USER -s /opt/homebrew/bin/fish && echo 'Now log out.'"
+
 # alacritty toggle-theme function
 tt() { python3 $XDG_CONFIG_HOME/alacritty/toggle-theme.py "$@" }
 
@@ -38,11 +42,11 @@ alias find="fd"
 
 # LS replacement - eza
 ## https://github.com/eza-community/eza
-macIgnore=$(<$ZDOTDIR/macignore.zsh)
+ezaOptions="--icons --git-ignore -I='$(cat $ZDOTDIR/macignore.txt)' --group-directories-first"
+alias ls="eza -alG $ezaOptions" # all files and dirs; long format/grid
+alias la="eza -a $ezaOptions" # all files and dirs
+alias tr="eza -aT $ezaOptions" # tree listing
 alias l.='eza -a --git-ignore | egrep "^\."'
-alias ls='eza -a --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
-alias ll='eza -alhH --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
-alias tr='eza -alhHT --icons --git --git-ignore -I="$macIgnore" -s=type --color=always'
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'
