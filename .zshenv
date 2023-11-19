@@ -1,1 +1,0 @@
-/Users/gldtn/.config/zsh/.zshenv
