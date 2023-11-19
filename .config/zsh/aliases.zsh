@@ -3,7 +3,7 @@ alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
 alias tofish="sudo chsh $USER -s /opt/homebrew/bin/fish && echo 'Now log out.'"
 
 # alacritty toggle-theme function
-tt() { python3 $XDG_CONFIG_HOME/alacritty/toggle-theme.py "$@" }
+tt() { python3 ${XDG_CONFIG_HOME}/alacritty/toggle-theme.py "$@" }
 
 #kitty
 alias st="switch-theme $1"
@@ -25,9 +25,14 @@ alias .....="z ../../../.."
 # Get macOS Software Updates
 alias update="sudo softwareupdate -i -a"
 
-# Source/edit ~/.zshrc
-alias s.zsh="source $ZDOTDIR/.zshrc"
-alias zshrc="$EDITOR $ZDOTDIR/.zshrc"
+# path manipulation
+alias l.path="/usr/libexec/path_helper" # list path
+alias l.env="printenv" # list set environment
+# zsh manipulation
+alias s.al="source ${ZDOTDIR}/aliases.zsh"
+alias s.zsh="source ${ZDOTDIR}/.zshrc"
+alias al="cat ${ZDOTDIR}/aliases.zsh"
+alias e.zsh="${EDITOR} ${ZDOTDIR}"
 
 # Python
 alias python="python3"
@@ -73,12 +78,9 @@ alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 # Yabai/SKHD
 alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
-alias skhdrc="$EDITOR $XDG_CONFIG_HOME/skhd/skhdrc"
-alias yabairc="$EDITOR $XDG_CONFIG_HOME/yabai/yabairc"
-alias yabai.up="$XDG_CONFIG_HOME/yabai/./update.sh"
-
-alias path="/usr/libexec/path_helper" # list path
-alias p.path="prinenv" # list set environment
+alias skhdrc="${EDITOR} ${XDG_CONFIG_HOME}/skhd/skhdrc"
+alias yabairc="${EDITOR} ${XDG_CONFIG_HOME}/yabai/yabairc"
+alias yabai.up="${XDG_CONFIG_HOME}/yabai/./update.sh"
 
 # Alacritty
 alias alacritty-new='alacritty msg create-window; open -a Alacritty'
