@@ -42,10 +42,11 @@ alias find="fd"
 
 # LS replacement - eza
 ## https://github.com/eza-community/eza
-ezaOptions="--icons --git-ignore -I='$(cat $ZDOTDIR/macignore.txt)' --group-directories-first"
-alias ls="eza -alG $ezaOptions" # all files and dirs; long format/grid
-alias la="eza -a $ezaOptions" # all files and dirs
-alias tr="eza -aT $ezaOptions" # tree listing
+ezargs="--icons --git-ignore -I='$(awk '{$1=$1} NF{printf "%s|", $0}' "${ZDOTDIR}/macignore.txt" | sed 's/|$//')' --group-directories-first"
+
+alias ls="eza -alG $ezargs" # all files and dirs; long format/grid
+alias la="eza -a $ezargs" # all files and dirs
+alias tr="eza -aT $ezargs" # tree listing
 alias l.='eza -a --git-ignore | egrep "^\."'
 
 # Colorize grep output (good for log files)
@@ -76,5 +77,8 @@ alias skhdrc="$EDITOR $XDG_CONFIG_HOME/skhd/skhdrc"
 alias yabairc="$EDITOR $XDG_CONFIG_HOME/yabai/yabairc"
 alias yabai.up="$XDG_CONFIG_HOME/yabai/./update.sh"
 
+alias path="/usr/libexec/path_helper" # list path
+alias p.path="prinenv" # list set environment
+
 # Alacritty
-alias alacritty-new="alacritty msg create-window; open -a Alacritty"
+alias alacritty-new='alacritty msg create-window; open -a Alacritty'
