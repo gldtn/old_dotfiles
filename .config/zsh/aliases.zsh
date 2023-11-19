@@ -29,10 +29,10 @@ alias update="sudo softwareupdate -i -a"
 alias l.path="/usr/libexec/path_helper" # list path
 alias l.env="printenv" # list set environment
 # zsh manipulation
-alias s.al="source ${ZDOTDIR}/aliases.zsh"
-alias s.zsh="source ${ZDOTDIR}/.zshrc"
-alias al="cat ${ZDOTDIR}/aliases.zsh"
-alias e.zsh="${EDITOR} ${ZDOTDIR}"
+alias s.al="source \${ZDOTDIR}/aliases.zsh"
+alias s.zsh="source \${ZDOTDIR}/.zshrc"
+alias al="cat \${ZDOTDIR}/aliases.zsh"
+alias e.zsh="${EDITOR} \${ZDOTDIR}"
 
 # Python
 alias python="python3"
@@ -78,8 +78,8 @@ alias yadm.rm="yadm rm --cached" # Remove file from being tracked
 # Yabai/SKHD
 alias yabai.a="yabai -m query --windows | jq '.[].app'"
 alias yabai.t="yabai -m query --windows | jq '.[].title'"
-alias skhdrc="${EDITOR} ${XDG_CONFIG_HOME}/skhd/skhdrc"
-alias yabairc="${EDITOR} ${XDG_CONFIG_HOME}/yabai/yabairc"
+alias skhdrc="${EDITOR} \${XDG_CONFIG_HOME}/skhd/skhdrc"
+alias yabairc="${EDITOR} \${XDG_CONFIG_HOME}/yabai/yabairc"
 alias yabai.up="${XDG_CONFIG_HOME}/yabai/./update.sh"
 
 # Alacritty
