@@ -11,7 +11,7 @@ alias st="switch-theme $1"
 # fzf cd function
 fcd() {
   local dir
-  dir=$(find ${1:-.} -type d -not -path '*/\.*' 2> /dev/null | fzf +m) && cd "$dir"
+  dir=$(fd --type directory --exclude '.*' --base-directory="${1:-.}" | fzf +m) && cd "$dir"
 }
 
 # CD replacement - Zoxide
@@ -49,10 +49,12 @@ alias find="fd"
 ## https://github.com/eza-community/eza
 ezargs="--icons --git-ignore -I='$(awk '{$1=$1} NF{printf "%s|", $0}' "${ZDOTDIR}/macignore.txt" | sed 's/|$//')' --group-directories-first"
 
-alias ls="eza -alG $ezargs" # all files and dirs; long format/grid
+alias ls="eza -alhG $ezargs" # all files and dirs; long format/grid
 alias la="eza -a $ezargs" # all files and dirs
 alias tr="eza -aT $ezargs" # tree listing
+alias ll=eza -ld .* | grep "^l" # list links
 alias l.='eza -a --git-ignore | egrep "^\."'
+
 
 # Colorize grep output (good for log files)
 alias grep='grep --color=auto'

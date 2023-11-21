@@ -1,4 +1,7 @@
-import = ["/Users/gldtn/.config/alacritty/themes/rose-pine-moon.toml"]
+import = ["/Users/gldtn/.config/alacritty/themes/night-shift.toml"]
+
+[env]
+  TERM = "xterm-256color"
 
 [window]
   padding.x = 16
@@ -9,9 +12,9 @@ import = ["/Users/gldtn/.config/alacritty/themes/rose-pine-moon.toml"]
 [font]
   normal.family = "FiraCode Nerd Font"
   normal.style = "Light"
-  bold.family = "Monolisa"
-  bold.style = "Regular"
+  bold.family = "MonoLisa"
+  bold.style = "Bold"
   size = 18
 
-[scrolling]
-  history = 10000
+[colors]
+draw_bold_text_with_bright_colors = true

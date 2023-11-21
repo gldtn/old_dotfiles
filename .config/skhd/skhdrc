@@ -89,18 +89,34 @@ alt - n : yabai -m window --toggle native-fullscreen
 
 ## Resize windows
 # change master width
-ctrl + shift - h : ~/.config/skhd/resizeWindow.sh -h
-ctrl + shift - l : ~/.config/skhd/resizeWindow.sh -l
-# alternatively, use the arrow keys
-ctrl + shift - left : ~/.config/skhd/resizeWindow.sh -h
-ctrl + shift - right : ~/.config/skhd/resizeWindow.sh -l
+# ctrl + shift - h : ~/.config/skhd/resizeWindow.sh -h
+# ctrl + shift - l : ~/.config/skhd/resizeWindow.sh -l
+# # alternatively, use the arrow keys
+# ctrl + shift - left : ~/.config/skhd/resizeWindow.sh -h
+# ctrl + shift - right : ~/.config/skhd/resizeWindow.sh -l
 
-# change split height
-ctrl + shift - k : ~/.config/skhd/resizeWindow.sh -k
-ctrl + shift - j : ~/.config/skhd/resizeWindow.sh -j
-# alternatively, use the arrow keys
-ctrl + shift - up : ~/.config/skhd/resizeWindow.sh -k
-ctrl + shift - down : ~/.config/skhd/resizeWindow.sh -j
+# # change split height
+# ctrl + shift - k : ~/.config/skhd/resizeWindow.sh -k
+# ctrl + shift - j : ~/.config/skhd/resizeWindow.sh -j
+# # alternatively, use the arrow keys
+# ctrl + shift - up : ~/.config/skhd/resizeWindow.sh -k
+# ctrl + shift - down : ~/.config/skhd/resizeWindow.sh -j
+
+# resize window mode
+ctrl + shift - h : yabai3 resize grow width 96
+ctrl + shift - j : yabai3 resize shrink height 64
+ctrl + shift - k : yabai3 resize grow height 64
+ctrl + shift - l : yabai3 resize shrink width 96
+
+# resize window mode
+:: resize
+hyper - r ; resize
+resize < escape ; default
+resize < return ; default
+resize < h : yabai3 resize shrink width 96
+resize < j : yabai3 resize grow height 64
+resize < k : yabai3 resize shrink height 64
+resize < l : yabai3 resize grow width 96
 
 # balance size of windows
 ctrl + shift - 0 : yabai -m space --balance
