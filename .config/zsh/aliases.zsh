@@ -52,7 +52,7 @@ ezargs="--icons --git-ignore -I='$(awk '{$1=$1} NF{printf "%s|", $0}' "${ZDOTDIR
 alias ls="eza -alhG $ezargs" # all files and dirs; long format/grid
 alias la="eza -a $ezargs" # all files and dirs
 alias tr="eza -aT $ezargs" # tree listing
-alias ll=eza -ld .* | grep "^l" # list links
+alias ll='eza -ld .* | grep "^l"' # list links
 alias l.='eza -a --git-ignore | egrep "^\."'
 
 
