@@ -33,7 +33,7 @@ usage = f"{COLORS['RED']}Usage{COLORS['RESET']}: {script_name} [{COLORS['CYAN']}
 # Directories
 user_home = os.path.expanduser('~')
 theme_directory = os.path.join(user_home, '.config/alacritty/themes')
-alacritty_config = os.path.join(user_home, '.config/alacritty/alacritty.toml')
+term_config = os.path.join(user_home, '.config/alacritty/alacritty.toml')
 
 # Switch themes by index or name
 def toggle_theme(theme_input):
@@ -64,12 +64,12 @@ def apply_theme(theme_name):
     theme_config = os.path.join(theme_directory, f'{theme_name}.toml')
     import_line = f'import = ["{os.path.join(theme_directory, f"{theme_name}.toml")}"]'
 
-    with open(alacritty_config, 'r') as f:
+    with open(term_config, 'r') as f:
         config_content = f.read()
 
     config_content = re.sub(r'import = \[".*"\]', import_line, config_content)
 
-    with open(alacritty_config, 'w') as f:
+    with open(term_config, 'w') as f:
         f.write(config_content)
 
     return theme_name

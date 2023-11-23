@@ -16,12 +16,6 @@ export TERM="xterm-256color"
 export BROWSER="Firefox"
 export EDITOR="zed --wait"
 export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
-# Mostly for neofetch
-export WM="Yabai $(yabai --version | awk -F'[- ]' '{print $2}')"
-export CPU="$(sysctl -n machdep.cpu.brand_string) - $(smctemp -c)c"
-export TERMINAL="Alacritty v$(alacritty --version | awk '{print $2}')"
-export TERM_FONT=$(grep 'normal.family' ${XDG_CONFIG_HOME}/alacritty/alacritty.toml | awk -F'"' '{print $2}')
-
 
 ### Programs related PATH ###
 # eza completions

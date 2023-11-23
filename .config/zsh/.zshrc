@@ -1,7 +1,24 @@
-# Source configs
-source "$ZDOTDIR/aliases.zsh"
-source "$ZDOTDIR/plugins.zsh"
-source "$ZDOTDIR/histconf.zsh"
+# Configs files
+files=(
+    ".aliasrc"
+    #".functionsrc"
+    "plugins.zsh"
+    "histconf.zsh"
+)
+
+# Source configs files
+for file in "${files[@]}"; do
+    full_path="${ZDOTDIR:-~}/${file}"
+    if [[ -r "$full_path" ]]; then
+        . "$full_path"
+    fi
+done
+
+# Mostly for neofetch
+export WM="Yabai $(yabai --version | awk -F'[- ]' '{print $2}')"
+export CPU="$(sysctl -n machdep.cpu.brand_string) - $(smctemp -c)c"
+export TERMINAL="Kitty v$(kitty --version | awk '{print $2}')"
+export TERM_FONT=$(awk '/font_family/ {print $2}' "${XDG_CONFIG_HOME}/kitty/kitty.conf")
 
 # Add custom functions directory to fpath
 fpath+=${ZDOTDIR:-~}/.zsh_functions

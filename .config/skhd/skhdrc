@@ -149,12 +149,16 @@ meh - z : yabai --restart-service
 ## Hotkeys to launch Apps
 
 # new terminals
-hyper - return : alacritty msg create-window; open -a Alacritty
+hyper - return : kitty --single-instance -d ~
+#hyper - return : alacritty msg create-window; open -a Alacritty
 # hyper - j : yabai -m window --insert south && alacritty-new
 # hyper - h : yabai -m window --insert east && alacritty-new
 
 # Open Zed
 hyper - c : zed
+
+# Show shortcuts
+hyper - s : /Applications/KeyClu.app/Contents/MacOS/KeyClu --toggle-persistent
 
 # open mpv
 hyper - m : open -na /Applications/mpv.app #$(pbpaste)
