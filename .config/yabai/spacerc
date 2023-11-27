@@ -1,0 +1,78 @@
+# Space management
+
+# Space names
+#yabai -m space 1 --label one
+
+## SPACE 1
+CASA=(
+    #Firefox
+    Google Chrome
+)
+
+for ((i = 1; i <= "${#CASA[@]}"; i++)); do
+    yabai -m rule --add label="casa_${CASA[(($i - 1))]}" app="^${CASA[(($i - 1))]}.*$" space=^1
+done
+
+## SPACE 4
+MEDIA=(
+    Spotify
+    Music
+)
+
+for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
+	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=^4
+done
+
+## SPACE 5
+OTHER=(
+	Inkscape
+    Skim
+)
+
+for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
+	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=^5
+done
+
+## SPACE 6
+CODE=(
+	Code
+	Zed Preview
+    Sublime Text
+)
+
+for ((i = 1; i <= "${#CODE[@]}"; i++)); do
+	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=^6
+done
+
+## SPACE 7
+TERMCONF=(
+    Transmit
+)
+
+for ((i = 1; i <= "${#TERMCONF[@]}"; i++)); do
+    yabai -m rule --add label="termconf_${TERMCONF[(($i - 1))]}" app="^${TERMCONF[(($i - 1))]}.*$" space=^7
+done
+
+## SPACE 8
+MAIL=(
+	Mimestream
+    Thunderbird Daily
+)
+
+for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
+	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=^8
+done
+
+## SPACE 10
+SOCIAL=(
+    Slack
+	Discord
+    WhatsApp
+    Messages
+    Telegram
+    Messenger
+)
+
+for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
+	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=^10 | yabai -m config --space 10 layout stack | yabai -m space 10 --padding abs:16:16:16:16
+done

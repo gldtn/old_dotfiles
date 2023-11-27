@@ -1,44 +1,16 @@
 #!/usr/bin/env sh
 
-# See this wiki page for information:
-#  - https://github.com/koekeishiya/yabai/wiki
-#
+# Wiki - https://github.com/koekeishiya/yabai/wiki
 
-# Disable Apple's shitty window manager
-#launchctl unload -F /System/Library/LaunchAgents/com.apple.WindowManager.plist > /dev/null 2>&1 &
-
-# Configure scripting addition and update HASH
-# this hash must be updated manually after running brew upgrade.
-#
-# sudo visudo -f /private/etc/sudoers.d/yabai
-# echo "$(whoami) ALL=(root) NOPASSWD: sha256:$(shasum -a 256 $(which yabai) | cut -d " " -f 1) $(which yabai) --load-sa"
-#
+# Load scripting addition
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
 sudo yabai --load-sa
 
-# # Signals
-# yabai -m signal --add event=window_destroyed active=yes action="yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null"
-# yabai -m signal --add event=window_minimized active=yes action="if \$(yabai -m query --windows --window \$YABAI_WINDOW_ID | jq -r '.\"is-floating\"'); then yabai -m query --windows --window &> /dev/null || yabai -m window --focus mouse &> /dev/null || yabai -m window --focus \$(yabai -m query --windows --space | jq .[0].id) &> /dev/null; fi"
-
-
-# Yabai Indicator sync - https://github.com/xiamaz/YabaiIndicator
-yabai -m signal --add event=mission_control_exit action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=display_added action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=display_removed action='echo "refresh" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_created action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_destroyed action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_focused action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_moved action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_resized action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_minimized action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-yabai -m signal --add event=window_deminimized action='echo "refresh windows" | nc -U /tmp/yabai-indicator.socket'
-
-# Space names
-#yabai -m space 1 --label one
+# Include necessary signals for yabai-indicator
+source "${HOME}/.config/yabai/indicatorrc"
 
 # BAR HEIGHT
-# BAR_HEIGHT=$(sketchybar -m --query bar | jq -r '.height')
-BAR_HEIGHT=0
+BAR_HEIGHT=0 #$(sketchybar -m --query bar | jq -r '.height')
 
 GENERAL=(
     external_bar all:"${BAR_HEIGHT}":0
@@ -82,180 +54,10 @@ yabai -m config "${LAYOUT[@]}"
 yabai -m config "${WINDOWS[@]}"
 yabai -m config "${MOUSE[@]}"
 
-## SPACE 1
-CASA=(
-    Firefox
-    SigmaOS
-    Google Chrome
-)
+# Include space & app management rc files
+source "${HOME}/.config/yabai/spacerc"
+source "${HOME}/.config/yabai/apprc"
 
-for ((i = 1; i <= "${#CASA[@]}"; i++)); do
-    yabai -m rule --add label="casa_${CASA[(($i - 1))]}" app="^${CASA[(($i - 1))]}.*$" space=^1
-done
-
-## SPACE 4
-MEDIA=(
-    Spotify
-    Music
-)
-
-for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
-	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=^4
-done
-
-## SPACE 5
-OTHER=(
-	Inkscape
-    Skim
-)
-
-for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
-	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=^5
-done
-
-## SPACE 6
-CODE=(
-	Code
-	Zed Preview
-    Sublime Text
-)
-
-for ((i = 1; i <= "${#CODE[@]}"; i++)); do
-	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=^6
-done
-
-## SPACE 7
-TERMCONF=(
-    Transmit
-)
-
-for ((i = 1; i <= "${#TERMCONF[@]}"; i++)); do
-    yabai -m rule --add label="termconf_${TERMCONF[(($i - 1))]}" app="^${TERMCONF[(($i - 1))]}.*$" space=^7
-done
-
-## SPACE 8
-MAIL=(
-	Mimestream
-    Thunderbird Daily
-)
-
-for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
-	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=^8
-done
-
-## SPACE 10
-SOCIAL=(
-    Slack
-	Discord
-    WhatsApp
-    Messages
-    Telegram
-    Messenger
-)
-
-for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
-	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=^10 | yabai -m config --space 10 layout stack | yabai -m space 10 --padding abs:16:16:16:16
-done
-
-# STICKY apps
-STICKY=(
-    mpv
-    VLC
-    Plex
-    IINA
-    AltTab
-    Superkey
-    Hyperkey
-    Bitwarden
-    1Password
-    ColorSlurp
-    Authy Desktop
-    SpaceLauncher
-    System Settings
-    System Preferences
-)
-
-for ((i = 1; i <= "${#STICKY[@]}"; i++)); do
-    yabai -m rule --add label="sticky_${STICKY[(($i - 1))]}" app="^${STICKY[(($i - 1))]}.*$" sticky=on
-done
-
-# FLOATING apps
-UNMANAGED=(
-    Settings
-    Preferences
-    System Settings
-    System Preferences
-    System Information
-    Activity Monitor
-    Software Update
-    Archive Utility
-    Opal Composer
-    Disk Utility
-    Calculator
-    Dictionary
-    App Store
-    FaceTime
-    zoom.us
-    Finder
-    Steam
-    VLC
-    Pika
-    Herd
-    IINA
-    Notes
-    Authy
-    Python
-    AltTab
-    Alfred
-    Raycast
-    Hyperkey
-    Superkey
-    Calendar
-    ForkLift
-    Bitwarden
-    Übersicht
-    SideNotes
-    ColorSlurp
-    Hidden Bar
-    AppCleaner
-    ExpressVPNz
-    LibreOffice
-    Photo Booth
-    CleanShot X
-    Bitcoin Core
-    Opal Composer
-    SpaceLauncher
-    Camtasia 2022
-    Screen Sharing
-    MobileDeviceUpdater
-)
-
-for ((i = 1; i <= "${#UNMANAGED[@]}"; i++)); do
-    yabai -m rule --add label="unmanage_${UNMANAGED[(($i - 1))]}" app="^${UNMANAGED[(($i - 1))]}.*$" manage=off
-done
-
-# App rules - Use $( yabai -m query --windows | jq '.[].app' ) to find app name
-# Automatically float non-resizable windows, such as palettes, system settings etc.
-yabai -m signal --add event=window_created action='yabai -m query --windows --window $YABAI_WINDOW_ID | jq -er ".\"can-resize\" or .\"is-floating\"" || yabai -m window $YABAI_WINDOW_ID --toggle float'
-
-# Apps notifications (testing..)
-
-# Exclude problematic apps from being managed:
-#yabai -m rule --add label="PhpStorm" app="^PhpStorm$" title!="PhpStorm" manage=off
-#yabai -m rule --add label="Settings" app="^PhpStorm$" title="Settings|CLI Interpreters|Keyboard Shortcut" manage=off
-yabai -m rule --add app="^Inkscape$" title!="Inkscape" manage=off
-yabai -m rule --add app="^Inkscape$" title="Inkscape. Draw freely." manage=off
-yabai -m rule --add app="Zed Preview" title="^Open$" manage=off
-# Browsers
-yabai -m rule --add app="^Safari$" title!="^Safari$" manage=off
-yabai -m rule --add app="^DuckDuckGo$" title!="^New Tab$" manage=off
-yabai -m rule --add app="^Google Chrome$" title!="New Tab" manage=off
-#yabai -m rule --add app="^Firefox$" title!="Mozilla Firefox" manage=off
-
-# Email apps
-yabai -m rule --add label="Mimestream" app="^Mimestream$" title!="Inbox.*" manage=off
-yabai -m rule --add label="Thunderbird Daily" app="^Thunderbird Daily$" title!="Inbox.*" manage=off
-
-# # JankyBorders
+## JankyBorders
 # https://github.com/FelixKratz/JankyBorders
 borders active_color=0xff9680FA inactive_color=0xff44475A width=4.0 2>/dev/null 1>&2 &
