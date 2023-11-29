@@ -57,7 +57,3 @@ yabai -m config "${MOUSE[@]}"
 # Include space & app management rc files
 source "${HOME}/.config/yabai/spacerc"
 source "${HOME}/.config/yabai/apprc"
-
-## JankyBorders
-# https://github.com/FelixKratz/JankyBorders
-borders active_color=0xff9680FA inactive_color=0xff44475A width=4.0 2>/dev/null 1>&2 &

@@ -41,6 +41,9 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}' 'r:|[._-]=* r:|=*' 'l:|=* r:
 export _ZO_FZF_OPTS='1' # must be set before eval
 eval "$(zoxide init zsh)"
 
+# eza completions
+export FPATH="${HOME}/.config/eza/completions/zsh:$FPATH"
+
 ### END: THESE MUST BE PLACED AFTER 'autload -Uz' ###
 
 # fzf - Fuzzy finder

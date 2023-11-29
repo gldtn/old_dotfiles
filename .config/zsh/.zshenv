@@ -18,8 +18,6 @@ export EDITOR="zed --wait"
 export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
 
 ### Programs related PATH ###
-# eza completions
-export FPATH="${HOME}/.config/eza/completions/zsh:$FPATH"
 
 # Setting PATH for Python 3.11
 # The original version is saved in .zprofile.pysave
