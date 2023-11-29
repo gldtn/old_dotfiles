@@ -2,11 +2,11 @@
 # https://github.com/FelixKratz/JankyBorders
 
 OPTIONS=(
+    hidpi=on
+    width=4.0
     style=round
     active_color=0xff9680FA
     inactive_color=0xff44475A
-    width=4.0
-    hidpi=on
 )
 
 borders "${OPTIONS[@]}"
