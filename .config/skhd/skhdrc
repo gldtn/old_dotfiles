@@ -143,8 +143,8 @@ alt + shift - p : yabai -m window --focus stack.prev
 # Restart Yabai
 meh - z : yabai --restart-service
 
-# Toggle sketchybar
-#meh - space : sketchybar --bar hidden=toggle
+# Restart Jankyborders
+meh - b : brew services restart felixkratz/formulae/borders
 
 ## Hotkeys to launch Apps
 
