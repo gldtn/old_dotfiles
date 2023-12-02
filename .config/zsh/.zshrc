@@ -1,14 +1,13 @@
 # Configs files
 files=(
-    ".aliasrc"
-    #".functionsrc"
+    "aliases.zsh"
     "plugins.zsh"
     "histconf.zsh"
 )
 
 # Source configs files
 for file in "${files[@]}"; do
-    full_path="${ZDOTDIR:-~}/${file}"
+    full_path="${ZDOTDIR:-~}/rc/${file}"
     if [[ -r "$full_path" ]]; then
         . "$full_path"
     fi
@@ -24,7 +23,7 @@ export TERM_FONT=$(awk '/font_family/ {print $2}' "${XDG_CONFIG_HOME}/kitty/kitt
 fpath+=${ZDOTDIR:-~}/.zsh_functions
 
 # Load and initialize the Zsh completion system
-autoload -Uz compinit && compinit
+autoload -Uz compinit && compinit -d "${ZDOTDIR:-$HOME}/.cache/.zcompdump"
 
 ### THESE MUST BE PLACED AFTER 'compinit' ###
 
