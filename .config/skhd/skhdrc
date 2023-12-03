@@ -148,11 +148,15 @@ meh - b : brew services restart felixkratz/formulae/borders
 
 ## Hotkeys to launch Apps
 
-# new terminals
+## kitty
 hyper - return : kitty --single-instance -d ~
-#hyper - return : alacritty msg create-window; open -a Alacritty
-# hyper - j : yabai -m window --insert south && alacritty-new
-# hyper - h : yabai -m window --insert east && alacritty-new
+hyper - j : yabai -m window --insert south && kitty --single-instance -d ~
+hyper - h : yabai -m window --insert east && kitty --single-instance -d ~
+
+## alacritty
+#hyper - return : alacritty msg create-window; open -a alacritty
+#hyper - j : yabai -m window --insert south && alacritty-new
+#hyper - h : yabai -m window --insert east && alacritty-new
 
 # Open Zed
 hyper - c : zed
