@@ -3,7 +3,7 @@ export PATH="$PATH:${HOME}/.local/bin:${HOME}/bin:${HOME}/.composer/vendor/bin"
 
 # zsh config dir
 export ZDOTDIR=${HOME}/.config/zsh
-export ZSH_COMPDUMP=${ZDOTDIR:-$HOME}/.cache/.zcompdump-$HOST
+export ZSH_COMPDUMP=${ZDOTDIR:-$HOME}/.cache/.zcompdump
 
 # XDG Paths
 export XDG_CONFIG_HOME=${HOME}/.config

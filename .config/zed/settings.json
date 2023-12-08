@@ -3,84 +3,129 @@
  * docs: https://zed.dev/docs/configuring-zed
  **/
 {
-  //"base_keymap": "SublimeText",
-  "base_keymap": "VSCode",
-  "theme": "Rosé Pine Moon",
-  "telemetry": {
-    "diagnostics": true,
-    "metrics": true
-  },
-
-  /**
-   * Typography
-   **/
-  // Editor
-  "buffer_font_family": "MonoLisa",
-  "buffer_font_features": {
-    "liga": true
-  },
-  "buffer_line_height": {
-    "custom": 1.9
-  },
-  "buffer_font_size": 18,
-  // Terminal
-  "terminal": {
-    //"shell": "system",
-    "font_size": 16,
-    "liga": true
-  },
-
-  /**
-   * Editor defaults
-   **/
-  "tab_size": 4,
-  "soft_wrap": "editor_width",
-  "collaboration_panel": {
-    "dock": "right"
-  },
-  "project_panel": {
-    "dock": "right",
-    "git_status": true
-  },
-  "features": {
-    "copilot": false
-  },
-  // "excluded_patterns": [
-  //     ".DS_Store",
-  //     "*-lock.*"
-  // ],
-
-  /**
-   * Formatter
-   **/
-  "enable_language_server": true,
-  "lsp": {
-    // JSON
-    "json-language-server": {
-      "initialization_options": {
-        "format_on_save": "off"
-      }
+    //"base_keymap": "SublimeText",
+    "base_keymap": "SublimeText",
+    "theme": "Rosé Pine Moon",
+    "telemetry": {
+        "diagnostics": true,
+        "metrics": true
     },
-    // Rust
-    "rust-analyzer": {
-      "initialization_options": {
-        "checkOnSave": {
-          "command": "clippy" // rust-analyzer.checkOnSave.command
+
+    /**
+     * Typography
+
+
+     I've been using MonoLisa as my editor font for
+     the past few months. After a small adjustment
+     period, I really -> grew to love it. Goin back
+
+     **/
+
+    // Editor
+    "buffer_font_family": "Monolisa Variable",
+    "buffer_font_features": {
+        "liga": true,
+        "zero": true,
+        "ss02": true
+    },
+    // "buffer_font_customizations": {
+    //     "textMateRules": [
+    //         {
+    //             "scope": [
+    //                 //following will be in italic (=FlottFlott)
+    //                 "comment",
+    //                 "entity.name.type.class", //class names
+    //                 "keyword", //import, export, return…
+    //                 "constant", //String, Number, Boolean…, this, super
+    //                 "storage.modifier", //static keyword
+    //                 "storage.type.class.js" //class keyword
+    //             ],
+    //             "settings": {
+    //                 "fontStyle": "italic"
+    //             }
+    //         },
+    //         {
+    //             "scope": [
+    //                 //following will be excluded from italics (VSCode has some defaults for italics)
+    //                 "invalid",
+    //                 "keyword.operator",
+    //                 "constant.numeric.css",
+    //                 "keyword.other.unit.px.css",
+    //                 "constant.numeric.decimal.js",
+    //                 "constant.numeric.json"
+    //             ],
+    //             "settings": {
+    //                 "fontStyle": ""
+    //             }
+    //         }
+    //     ]
+    // },
+
+    "buffer_line_height": {
+        "custom": 1.9
+    },
+    "buffer_font_size": 18,
+
+    // Terminal
+    "terminal": {
+        //"shell": "system",
+        "font_size": 16,
+        "liga": true
+    },
+
+    /**
+     * Editor defaults
+     **/
+
+    "tab_size": 4,
+    "soft_wrap": "editor_width",
+    "collaboration_panel": {
+        "dock": "right"
+    },
+    "project_panel": {
+        "dock": "right",
+        "git_status": true
+    },
+    "features": {
+        "copilot": false
+    },
+    // "excluded_patterns": [
+    //     ".DS_Store",
+    //     "*-lock.*"
+    // ],
+
+    /**
+     * Formatter
+     **/
+
+    "enable_language_server": true,
+    "lsp": {
+        // JSON
+        "json-language-server": {
+            "initialization_options": {
+                "format_on_save": "off"
+            }
         },
-        "inlayHints": {
-          "maxLength": null,
-          "lifetimeElisionHints": {
-            "useParameterNames": true,
-            "enable": "skip_trivial"
-          },
-          "closureReturnTypeHints": {
-            "enable": "always"
-          }
+        // Rust
+        "rust-analyzer": {
+            "initialization_options": {
+                "checkOnSave": {
+                    "command": "clippy" // rust-analyzer.checkOnSave.command
+                },
+                "inlayHints": {
+                    "maxLength": null,
+                    "lifetimeElisionHints": {
+                        "useParameterNames": true,
+                        "enable": "skip_trivial"
+                    },
+                    "closureReturnTypeHints": {
+                        "enable": "always"
+                    }
+                }
+            }
+        },
+        "git": {
+            "git_gutter": "tracked_files"
         }
-      }
-    },
-    "git": {
-      "git_gutter": "tracked_files"
     }
-  }
 }

@@ -1,7 +1,3 @@
-# switch between shells
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
-alias tofish="sudo chsh $USER -s /opt/homebrew/bin/fish && echo 'Now log out.'"
-
 # alacritty toggle-theme function
 tat() { python3 ${XDG_CONFIG_HOME}/alacritty/toggle-theme.py "$@" }
 
