@@ -92,7 +92,7 @@ yabai -m rule --add app="Zed Preview" title="^Open$" manage=off
 # Browsers
 yabai -m rule --add app="^Safari$" title!="^Safari$" manage=off
 yabai -m rule --add app="^DuckDuckGo$" title!="^New Tab$" manage=off
-yabai -m rule --add app="^Google Chrome$" title!="New Tab" manage=off
+#yabai -m rule --add app="^Google Chrome$" title!="^New Tab$" manage=off
 #yabai -m rule --add app="^Firefox$" title!="Mozilla Firefox" manage=off
 
 # Email apps
