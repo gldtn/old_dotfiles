@@ -29,7 +29,7 @@ get_hex() {
 }
 
 # set color
-act_color="love"
+act_color="gold"
 ina_color="base"
 
 OPTIONS=(

@@ -2,7 +2,6 @@
 [ -f "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh" ] && source "${XDG_DATA_HOME:-$HOME/.local/share}/zap/zap.zsh"
 
 ### ZAP PLUGINS ###
-#plug "zap-zsh/supercharge"
 plug "zsh-users/zsh-autosuggestions"
 plug "zsh-users/zsh-syntax-highlighting"
 
@@ -34,7 +33,7 @@ eval "$(zoxide init zsh)"
 # eza completions
 export FPATH="${HOME}/.config/eza/completions/zsh:$FPATH"
 
-### END: THESE MUST BE PLACED AFTER 'autload -Uz' ##
+### END: THESE MUST BE PLACED AFTER 'compinit' ##
 
 # fzf - Fuzzy finder
 [ -f $ZDOTDIR/.fzf.zsh ] && source $ZDOTDIR/.fzf.zsh
