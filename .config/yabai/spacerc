@@ -3,76 +3,103 @@
 # Space names
 #yabai -m space 1 --label one
 
-## SPACE 1
-CASA=(
+## MONITOR 1 - SPACE 1-3
+
+# Space 1
+SPACE1=(
     #Firefox
-    Google Chrome
+    #Google Chrome
 )
 
-for ((i = 1; i <= "${#CASA[@]}"; i++)); do
-    yabai -m rule --add label="casa_${CASA[(($i - 1))]}" app="^${CASA[(($i - 1))]}.*$" space=^1
+for ((i = 1; i <= "${#SPACE1[@]}"; i++)); do
+    yabai -m rule --add label="space1_${SPACE1[(($i - 1))]}" app="^${SPACE1[(($i - 1))]}.*$" space=^1
 done
 
-## SPACE 4
-MEDIA=(
-    Spotify
-    Music
+# Space 2
+SPACE2=(
+    #...
 )
 
-for ((i = 1; i <= "${#MEDIA[@]}"; i++)); do
-	yabai -m rule --add label="media_${MEDIA[(($i - 1))]}" app="^${MEDIA[(($i - 1))]}.*$" space=^4
+for ((i = 1; i <= "${#SPACE2[@]}"; i++)); do
+    yabai -m rule --add label="space2_${SPACE2[(($i - 1))]}" app="^${SPACE2[(($i - 1))]}.*$" space=^2
 done
 
-## SPACE 5
-OTHER=(
-	Inkscape
+# Space 3
+SPACE3=(
+    #...
+)
+
+for ((i = 1; i <= "${#SPACE3[@]}"; i++)); do
+    yabai -m rule --add label="space3_${SPACE3[(($i - 1))]}" app="^${SPACE3[(($i - 1))]}.*$" space=^3
+done
+
+## MONITOR 2 - SPACE 4-6
+
+# Space 4
+SPACE4=(
+    Fork
+)
+
+for ((i = 1; i <= "${#SPACE4[@]}"; i++)); do
+	yabai -m rule --add label="space4_${SPACE4[(($i - 1))]}" app="^${SPACE4[(($i - 1))]}.*$" space=^4
+done
+
+# Space 5
+SPACE5=(
     Skim
-)
-
-for ((i = 1; i <= "${#OTHER[@]}"; i++)); do
-	yabai -m rule --add label="other_${OTHER[(($i - 1))]}" app="^${OTHER[(($i - 1))]}.*$" space=^5
-done
-
-## SPACE 6
-CODE=(
-	Code
-	Zed Preview
-    Sublime Text
-)
-
-for ((i = 1; i <= "${#CODE[@]}"; i++)); do
-	yabai -m rule --add label="code_${CODE[(($i - 1))]}" app="^${CODE[(($i - 1))]}.*$" space=^6
-done
-
-## SPACE 7
-TERMCONF=(
+    Inkscape
     Transmit
-)
-
-for ((i = 1; i <= "${#TERMCONF[@]}"; i++)); do
-    yabai -m rule --add label="termconf_${TERMCONF[(($i - 1))]}" app="^${TERMCONF[(($i - 1))]}.*$" space=^7
-done
-
-## SPACE 8
-MAIL=(
-	Mimestream
+    Mimestream
     Thunderbird Daily
 )
 
-for ((i = 1; i <= "${#MAIL[@]}"; i++)); do
-	yabai -m rule --add label="mail_${MAIL[(($i - 1))]}" app="^${MAIL[(($i - 1))]}.*$" space=^8
+for ((i = 1; i <= "${#SPACE5[@]}"; i++)); do
+	yabai -m rule --add label="space5_${SPACE5[(($i - 1))]}" app="^${SPACE5[(($i - 1))]}.*$" space=^5
 done
 
-## SPACE 10
-SOCIAL=(
+# Space 6
+SPACE6=(
     Slack
 	Discord
     WhatsApp
     Messages
     Telegram
     Messenger
+    Spotify
+    Music
 )
 
-for ((i = 1; i <= "${#SOCIAL[@]}"; i++)); do
-	yabai -m rule --add label="social_${SOCIAL[(($i - 1))]}" app="^${SOCIAL[(($i - 1))]}.*$" space=^10 | yabai -m config --space 10 layout stack | yabai -m space 10 --padding abs:16:16:16:16
+for ((i = 1; i <= "${#SPACE6[@]}"; i++)); do
+	yabai -m rule --add label="space6_${SPACE6[(($i - 1))]}" app="^${SPACE6[(($i - 1))]}.*$" space=^6
+done
+
+## MONITOR 3 - SPACE 7-9
+
+# Space 7
+SPACE7=(
+	Code
+	Zed Preview
+    Sublime Text
+)
+
+for ((i = 1; i <= "${#SPACE7[@]}"; i++)); do
+	yabai -m rule --add label="space7_${SPACE7[(($i - 1))]}" app="^${SPACE7[(($i - 1))]}.*$" space=^7
+done
+
+# Space 8
+SPACE8=(
+	#
+)
+
+for ((i = 1; i <= "${#SPACE8[@]}"; i++)); do
+	yabai -m rule --add label="space8_${SPACE8[(($i - 1))]}" app="^${SPACE8[(($i - 1))]}.*$" space=^8
+done
+
+# Space 9
+SPACE9=(
+	#
+)
+
+for ((i = 1; i <= "${#SPACE9[@]}"; i++)); do
+	yabai -m rule --add label="space9_${SPACE9[(($i - 1))]}" app="^${SPACE9[(($i - 1))]}.*$" space=^9
 done

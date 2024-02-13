@@ -86,9 +86,17 @@ yabai -m signal --add event=window_created action='yabai -m query --windows --wi
 # Exclude problematic apps from being managed:
 #yabai -m rule --add label="PhpStorm" app="^PhpStorm$" title!="PhpStorm" manage=off
 #yabai -m rule --add label="Settings" app="^PhpStorm$" title="Settings|CLI Interpreters|Keyboard Shortcut" manage=off
+
+# make JetBrains products popup windows float
+apps='^(PhpStorm|PhpStorm-EAP|IntelliJ IDEA|WebStorm|GoLand|PyCharm)$'
+yabai -m rule --add app="JetBrains Toolbox" manage=off
+yabai -m rule --add app="${apps}" manage=off
+yabai -m rule --add app="${apps}" title="( – )" manage=on
+
 yabai -m rule --add app="^Inkscape$" title!="Inkscape" manage=off
 yabai -m rule --add app="^Inkscape$" title="Inkscape. Draw freely." manage=off
 yabai -m rule --add app="Zed Preview" title="^Open$" manage=off
+
 # Browsers
 yabai -m rule --add app="^Safari$" title!="^Safari$" manage=off
 yabai -m rule --add app="^DuckDuckGo$" title!="^New Tab$" manage=off

@@ -4,25 +4,28 @@
  **/
 {
     //"base_keymap": "SublimeText",
-    "base_keymap": "SublimeText",
+    "base_keymap": "VSCode",
     "theme": "Rosé Pine Moon",
     "telemetry": {
         "diagnostics": true,
         "metrics": true
     },
-
+    "toolbar": {
+        "breadcrumbs": false,
+        "quick_actions": false
+    },
+    // "tabs": {
+    //     "placement": "bottom"
+    // },
+    //
     /**
      * Typography
-
-
      I've been using MonoLisa as my editor font for
      the past few months. After a small adjustment
      period, I really -> grew to love it. Goin back
-
      **/
-
     // Editor
-    "buffer_font_family": "Monolisa Variable",
+    "buffer_font_family": "MonoLisa Variable",
     "buffer_font_features": {
         "liga": true,
         "zero": true,
@@ -60,23 +63,18 @@
     //         }
     //     ]
     // },
-
     "buffer_line_height": {
         "custom": 1.9
     },
-    "buffer_font_size": 18,
-
+    "buffer_font_size": 16,
     // Terminal
     "terminal": {
-        //"shell": "system",
         "font_size": 16,
         "liga": true
     },
-
     /**
      * Editor defaults
      **/
-
     "tab_size": 4,
     "soft_wrap": "editor_width",
     "collaboration_panel": {
@@ -87,17 +85,18 @@
         "git_status": true
     },
     "features": {
-        "copilot": false
+        "copilot": true
     },
-    // "excluded_patterns": [
-    //     ".DS_Store",
-    //     "*-lock.*"
-    // ],
+    "copilot": {
+        "disabled_globs": [".env"]
+    },
+    "git": {
+        "git_gutter": "tracked_files"
+    },
 
     /**
-     * Formatter
+     * Language server settings
      **/
-
     "enable_language_server": true,
     "lsp": {
         // JSON
@@ -105,27 +104,6 @@
             "initialization_options": {
                 "format_on_save": "off"
             }
-        },
-        // Rust
-        "rust-analyzer": {
-            "initialization_options": {
-                "checkOnSave": {
-                    "command": "clippy" // rust-analyzer.checkOnSave.command
-                },
-                "inlayHints": {
-                    "maxLength": null,
-                    "lifetimeElisionHints": {
-                        "useParameterNames": true,
-                        "enable": "skip_trivial"
-                    },
-                    "closureReturnTypeHints": {
-                        "enable": "always"
-                    }
-                }
-            }
-        },
-        "git": {
-            "git_gutter": "tracked_files"
         }
     }
 }

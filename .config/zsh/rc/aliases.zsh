@@ -22,6 +22,10 @@ alias :le="printenv" # list set environment
 # Python
 alias python="python3"
 
+# Laravel
+alias pasc="php artisan db:seed --class=@"
+alias pamfs="php artisan migrate:fresh --seed"
+
 # browser-sync
 alias :bs="browser-sync start --config bs-config.js"
 
@@ -73,8 +77,8 @@ alias :yapu="yadm push -u origin main:main" # Push
 alias :yare="yadm pull --rebase origin main" # Rebase
 
 # Yabai/SKHD
-alias :eya="${EDITOR} \${XDG_CONFIG_HOME}/yabai"
-alias :uya="${XDG_CONFIG_HOME}/yabai/./update.sh"
+alias :yaedit="${EDITOR} \${XDG_CONFIG_HOME}/yabai"
+alias :yaupdate="${XDG_CONFIG_HOME}/yabai/./update.sh"
 alias :esk="${EDITOR} \${XDG_CONFIG_HOME}/skhd/skhdrc"
 alias :yaapp="yabai -m query --windows | jq '.[].app'"
 alias :yatitle="yabai -m query --windows | jq '.[].title'"
