@@ -10,6 +10,13 @@ plug "$HOME/.config/zsh/rc/aliases.zsh"
 plug "$HOME/.config/zsh/rc/functions.zsh"
 plug "$HOME/.config/zsh/rc/histconf.zsh"
 
+# Load custom functions
+fpath=(
+    ${ZDOTDIR}/.zsh_functions
+    "${fpath[@]}"
+)
+autoload -Uz kitana; autoload -Uz brewcup
+
 # Mostly for neofetch
 export WM="Yabai $(yabai --version | awk -F'[- ]' '{print $2}')"
 export CPU="$(sysctl -n machdep.cpu.brand_string) - $(smctemp -c)c"

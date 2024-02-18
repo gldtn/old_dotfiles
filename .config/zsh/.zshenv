@@ -22,5 +22,3 @@ export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
 # Setting PATH for Python 3.11
 # The original version is saved in .zprofile.pysave
 export PATH="/Library/Frameworks/Python.framework/Versions/3.11/bin":$PATH
-
-# Laravel HERD
