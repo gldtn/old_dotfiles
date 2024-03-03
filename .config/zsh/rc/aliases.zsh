@@ -1,8 +1,8 @@
 # alacritty toggle-theme function
-tat() { python3 ${XDG_CONFIG_HOME}/alacritty/toggle-theme.py "$@" }
+at() { python3 ${XDG_CONFIG_HOME}/alacritty/toggle-theme.py "$@" }
 
 #kitty
-tkt() { python3 ${XDG_CONFIG_HOME}/kitty/toggle-kitty-theme.py "$@" }
+kt() { python3 ${XDG_CONFIG_HOME}/kitty/toggle-kitty-theme.py "$@" }
 
 # CD replacement - Zoxide
 ## https://github.com/ajeetdsouza/zoxide
@@ -41,7 +41,7 @@ alias find="fd"
 ## https://github.com/eza-community/eza
 ezargs="--icons --git-ignore -I='$(awk '{$1=$1} NF{printf "%s|", $0}' "${ZDOTDIR}/.ezaignore" | sed 's/|$//')' --group-directories-first"
 
-alias ls="eza -alh $ezargs" # all files and dirs; long format/grid
+alias ls="eza -Galh $ezargs" # all files and dirs; long format/grid
 alias la="eza -a $ezargs" # all files and dirs
 alias tr="eza -aT $ezargs" # tree listing
 alias ll='eza -ld .* | grep "^l"' # list links

@@ -1,25 +1,61 @@
-## Change/focus spaces
+#KeyClu[Window Focus]: Focus space 1
 alt - 1 : yabai -m space --focus 1
+
+#KeyClu[Window Focus]: Focus space 2
 alt - 2 : yabai -m space --focus 2
+
+#KeyClu[Window Focus]: Focus space 3
 alt - 3 : yabai -m space --focus 3
+
+#KeyClu[Window Focus]: Focus space 4
 alt - 4 : yabai -m space --focus 4
+
+#KeyClu[Window Focus]: Focus space 5
 alt - 5 : yabai -m space --focus 5
+
+#KeyClu[Window Focus]: Focus space 6
 alt - 6 : yabai -m space --focus 6
+
+#KeyClu[Window Focus]: Focus space 7
 alt - 7 : yabai -m space --focus 7
+
+#KeyClu[Window Focus]: Focus space 8
 alt - 8 : yabai -m space --focus 8
+
+#KeyClu[Window Focus]: Focus space 9
 alt - 9 : yabai -m space --focus 9
+
+#KeyClu[Window Focus]: Focus space 10
 alt - 0 : yabai -m space --focus 10
 
-## Send window to space and follow focus
+#KeyClu[Send Window]: Send window to space 1 & follow focus
 alt + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1
+
+#KeyClu[Send Window]: Send window to space 2 & follow focus
 alt + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
+
+#KeyClu[Send Window]: Send window to space 3 & follow focus
 alt + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3
+
+#KeyClu[Send Window]: Send window to space 4 & follow focus
 alt + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4
+
+#KeyClu[Send Window]: Send window to space 5 & follow focus
 alt + shift - 5 : yabai -m window --space 5; yabai -m space --focus 5
+
+#KeyClu[Send Window]: Send window to space 6 & follow focus
 alt + shift - 6 : yabai -m window --space 6; yabai -m space --focus 6
+
+#KeyClu[Send Window]: Send window to space 7 & follow focus
 alt + shift - 7 : yabai -m window --space 7; yabai -m space --focus 7
+
+#KeyClu[Send Window]: Send window to space 8 & follow focus
 alt + shift - 8 : yabai -m window --space 8; yabai -m space --focus 8
+
+#KeyClu[Send Window]: Send window to space 9 & follow focus
 alt + shift - 9 : yabai -m window --space 9; yabai -m space --focus 9
+
+#KeyClu[Send Window]: Send window to space 10 & follow focus
 alt + shift - 0 : yabai -m window --space 10; yabai -m space --focus 10
 
 ## Focus spaces
@@ -103,6 +139,7 @@ alt - n : yabai -m window --toggle native-fullscreen
 # ctrl + shift - down : ~/.config/skhd/resizeWindow.sh -j
 
 # resize window mode
+# KeyClu[Window management]: Resize window
 ctrl + shift - h : yabai3 resize grow width 96
 ctrl + shift - j : yabai3 resize shrink height 64
 ctrl + shift - k : yabai3 resize grow height 64
@@ -162,7 +199,8 @@ hyper - h : yabai -m window --insert east && kitty --single-instance -d ~
 hyper - c : zed
 
 # Show shortcuts
-hyper - s : /Applications/KeyClu.app/Contents/MacOS/KeyClu --toggle-persistent
+hyper - s : /Applications/KeyClu.app/Contents/MacOS/KeyClu --show-shortcuts
+hyper - k : /Applications/KeyClu.app/Contents/MacOS/KeyClu --toggle-persistent
 
 # open mpv
 hyper - m : open -na /Applications/mpv.app #$(pbpaste)

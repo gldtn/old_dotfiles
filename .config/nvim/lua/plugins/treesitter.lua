@@ -1,5 +1,4 @@
 return {
-    {
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
@@ -55,5 +54,4 @@ return {
     },
     {
         "nvim-treesitter/nvim-treesitter-textobjects",
-    },
-}
+    }
