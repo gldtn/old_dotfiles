@@ -77,13 +77,13 @@ hyper - 0 : yabai -m window --space 10;
 ### Focus windows
 ################################################################################
 
-#KeyClu[Focus Window]: Focus west
+#KeyClu[Focus window]: West
 alt - h : yabai -m window --focus west  || yabai -m display --focus west
-#KeyClu[Focus Window]: Focus south
+#KeyClu[Focus window]: South
 alt - j : yabai -m window --focus south || yabai -m display --focus south
-#KeyClu[Focus Window]: Focus north
+#KeyClu[Focus window]: North
 alt - k : yabai -m window --focus north || yabai -m display --focus north
-#KeyClu[Focus Window]: Focus east
+#KeyClu[Focus window]: East
 alt - l : yabai -m window --focus east  || yabai -m display --focus east
 
 ################################################################################
@@ -103,11 +103,11 @@ alt + shift - l : yabai -m window --warp east  || $(yabai -m window --display ea
 ### Focus first/recent/last space
 ################################################################################
 
-#KeyClu[Focus Spaces] Focus recent space \
+#KeyClu[Focus space] Focus recent space \
 alt - 0x2A : yabai -m space --focus recent
-#KeyClu[Focus Spaces] Focus last space [
+#KeyClu[Focus space] Focus last space [
 alt - 0x21 : yabai -m space --focus prev || yabai -m space --focus last
-#KeyClu[Focus Spaces] Focus first space ]
+#KeyClu[Focus space] Focus first space ]
 alt - 0x1E : yabai -m space --focus next || yabai -m space --focus first
 
 ################################################################################
@@ -127,11 +127,11 @@ alt + shift - r : yabai -m space --rotate 90
 ### Toggle zoom, native-fullscreen, and fullscreen
 ################################################################################
 
-#KeyClu[Window zoom]: toggle zoom-parent
+#KeyClu[Zoom window]: toggle zoom-parent
 alt - p : yabai -m window --toggle zoom-parent
-#KeyClu[Window zoom]: toggle zoom-fullscreen
+#KeyClu[Zoom window]: toggle zoom-fullscreen
 alt - m : yabai -m window --toggle zoom-fullscreen
-#KeyClu[Window zoom]: toggle native-fullscreen
+#KeyClu[Zoom window]: toggle native-fullscreen
 alt - n : yabai -m window --toggle native-fullscreen
 
 ################################################################################
