@@ -163,7 +163,7 @@ alt + shift - s : yabai -m window --toggle split
 alt - g : yabai -m space --toggle padding; yabai -m space --toggle gap
 
 ################################################################################
-### Misc
+### Misc/Common
 ################################################################################
 
 # Possible bug @Anze, "Common" shortcuts hides first item
