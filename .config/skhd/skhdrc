@@ -124,7 +124,7 @@ alt - r : yabai -m space --rotate 270
 alt + shift - r : yabai -m space --rotate 90
 
 ################################################################################
-### Toggle zoom, native-fullscreen, and fullscreen
+### Zoom window, parent, native, and fullscreen
 ################################################################################
 
 #KeyClu[Zoom window]: toggle zoom-parent
