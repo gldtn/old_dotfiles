@@ -4,6 +4,14 @@ at() { python3 ${XDG_CONFIG_HOME}/alacritty/toggle-theme.py "$@" }
 #kitty
 kt() { python3 ${XDG_CONFIG_HOME}/kitty/toggle-kitty-theme.py "$@" }
 
+# Neovim
+nvimbk() {
+    mv ~/.config/nvim{,.bak}
+    rm -rf ~/.local/share/nvim
+    rm -rf ~/.local/state/nvim
+    rm -rf ~/.cache/nvim
+}
+
 # CD replacement - Zoxide
 ## https://github.com/ajeetdsouza/zoxide
 alias cd="z"
@@ -62,7 +70,7 @@ alias brew.uf="brew update && brew upgrade --formula" # or brew outdated | xargs
 alias brew.up="brew update && brew outdated && brew upgrade && brew upgrade --cask && brew cleanup"
 
 # zsh manipulation
-alias :ez="${EDITOR} \${ZDOTDIR}"
+alias :ez="nvim \${ZDOTDIR}"
 alias :sz="source \${ZDOTDIR}/.zshrc"
 alias :ea="cat \${ZDOTDIR}/rc/aliases.zsh"
 alias :sa="source \${ZDOTDIR}/rc/aliases.zsh"
