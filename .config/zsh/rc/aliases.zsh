@@ -76,13 +76,13 @@ alias :ea="cat \${ZDOTDIR}/rc/aliases.zsh"
 alias :sa="source \${ZDOTDIR}/rc/aliases.zsh"
 
 # YADM/Dotfiles
-alias :yast="yadm status"
-alias :yadd="yadm add $@"
-alias :yadda="yadm add -u" # Stage all
-alias :yaco="yadm commit -m" # Commit files
-alias :yarm="yadm rm --cached" # Remove file
-alias :yapu="yadm push -u origin main:main" # Push
-alias :yare="yadm pull --rebase origin main" # Rebase
+alias yadms="yadm status"
+alias yadma="yadm add $@"
+alias yadmaa="yadm add -u" # Stage all
+alias yadmc="yadm commit -m" # Commit files
+alias yadmr="yadm rm --cached" # Remove file
+alias yadmp="yadm push -u origin main:main" # Push
+alias yadmrebase="yadm pull --rebase origin main" # Rebase
 
 # Yabai/SKHD
 alias :yaedit="${EDITOR} \${XDG_CONFIG_HOME}/yabai"
