@@ -1,56 +1,69 @@
 return {
-    {
-        "nvim-treesitter/nvim-treesitter",
-        event = { "BufReadPre", "BufNewFile" },
-        build = ":TSUpdate",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter-textobjects",
-            "windwp/nvim-ts-autotag",
-        },
-        config = function()
-            -- import nvim-treesitter plugin
-            local treesitter = require("nvim-treesitter.configs")
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+		event = { "BufReadPre", "BufNewFile" },
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter-textobjects",
+		},
+		opts = {
+			-- enable syntax highlighting
+			highlight = {
+				enable = true,
+			},
+			-- enable indentation
+			indent = { enable = true },
+			-- ensure these language parsers are installed
+			ensure_installed = {
+				"c",
+				"lua",
+				"vim",
+				"vimdoc",
+				"query",
+				"json",
+				"yaml",
+				"toml",
+				"bash",
+				"html",
+				"css",
+				"scss",
+				"php",
+			},
+			auto_install = true,
+			refactor = {
+				highlight_definitions = { enable = true },
+			},
+			incremental_selection = {
+				enable = true,
+				keymaps = {
+					init_selection = "<Leader>ss",
+					node_incremental = "<Leader>sn",
+					scope_incremental = "<Leader>si",
+					node_decremental = "<bs>",
+				},
+			},
+		},
+		config = function(_, opts)
+			require("nvim-treesitter.configs").setup(opts)
+			-- FIXME: this is a hack to add blade support
+			-- NOTE: this is not working, need to figure out why
+			local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 
-            -- configure treesitter
-            treesitter.setup({
-                -- enable syntax highlighting
-                highlight = {
-                    enable = true,
-                },
-                -- enable indentation
-                indent = { enable = true },
-                -- enable autotagging (w/ nvim-ts-autotag plugin)
-                autotag = {
-                    enable = true,
-                },
-                -- ensure these language parsers are installed
-                ensure_installed = {
-                    "json",
-                    "javascript",
-                    "typescript",
-                    "tsx",
-                    "yaml",
-                    "html",
-                    "css",
-                    "php",
-                    "markdown",
-                    "markdown_inline",
-                    "bash",
-                    "lua",
-                    "vim",
-                    "gitignore",
-                    "query",
-                },
-                incremental_selection = {
-                    enable = true,
-                    keymaps = {
-                        init_selection = "<Leader>ss",
-                        node_incremental = "<Leader>si",
-                        scope_incremental = "<Leader>sc",
-                        node_decremental = "<Leader>sd",
-                    },
-                },
-            })
-        end,
-    },
+			---@class ParserConfig
+			parser_config.blade = {
+				install_info = {
+					url = "https://github.com/EmranMR/tree-sitter-blade",
+					files = { "src/parser.c" },
+					branch = "main",
+				},
+				filetype = "blade",
+			}
+
+			vim.filetype.add({
+				pattern = {
+					[".*%.blade%.php"] = "blade",
+				},
+			})
+		end,
+	},
 }

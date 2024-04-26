@@ -14,7 +14,8 @@ export XDG_DATA_HOME=${HOME}/.local/share
 export LANG="en_US.UTF-8"
 export TERM="xterm-256color"
 export BROWSER="chrome"
-export EDITOR="zed preview"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export SHELL_SESSIONS_DISABLE=1 # Disable sessions MacOS
 
 ### Programs related PATH ###

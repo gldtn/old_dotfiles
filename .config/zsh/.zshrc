@@ -15,7 +15,10 @@ fpath=(
     ${ZDOTDIR}/.zsh_functions
     "${fpath[@]}"
 )
-autoload -Uz kitana; autoload -Uz brewcup; autoload -Uz suyabai; autoload -Uz nvimbk
+autoload -Uz kitana;
+autoload -Uz brewcup;
+autoload -Uz suyabai;
+autoload -Uz nvimrm;
 
 # Mostly for neofetch
 export WM="Yabai $(yabai --version | awk -F'[- ]' '{print $2}')"

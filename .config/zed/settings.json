@@ -5,7 +5,7 @@
 {
     "vim_mode": false,
     "base_keymap": "VSCode",
-    "theme": "Rosé Pine Moon",
+    "theme": "Tokyo Night Storm",
     "telemetry": {
         "diagnostics": true,
         "metrics": true
@@ -14,10 +14,18 @@
         "breadcrumbs": false,
         "quick_actions": false
     },
+    // Show/Hide na history buttons
+    "tab_bar": {
+        "show_nav_history_buttons": true
+    },
+    "scrollbar": {
+        "symbols_selections": true
+    },
     // "tabs": {
     //     "placement": "bottom"
     // },
-    //
+    "line_indicator_format": "short",
+
     /**
      * Typography
      I've been using MonoLisa as my editor font for

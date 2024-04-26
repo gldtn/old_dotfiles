@@ -1,10 +1,11 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "0.1.x",
+	event = "VeryLazy",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
 		"nvim-treesitter/nvim-treesitter",
+		"nvim-telescope/telescope-file-browser.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build",
@@ -20,29 +21,34 @@ return {
 		telescope.setup({
 			defaults = {
 				layout_config = {
-					prompt_position = "top",
-					preview_cutoff = 120,
-					width = 0.75,
-					height = 0.75,
+					width = 0.80,
+					height = 0.80,
 				},
+
 				sorting_strategy = "ascending",
+				prompt_title = { padding = { 2 } },
+				prompt_prefix = "  ",
+				selection_caret = "  ",
 				mappings = {
 					i = {
-						["<esc>"] = require("telescope.actions").close,
+						["<C-h>"] = "which_key",
+						["<C-q>"] = require("telescope.actions").close,
+						["<C-j>"] = require("telescope.actions").move_selection_next,
+						["<C-k>"] = require("telescope.actions").move_selection_previous,
 					},
+					n = { ["q"] = require("telescope.actions").close },
 				},
 				file_ignore_patterns = {
 					"node_modules",
 					"yarn.lock",
 					".git",
-					".sl",
 					"_build",
 					"DS_Store",
 				},
 				hidden = true,
 			},
+			-- custom picker to list buffers
 			pickers = {
-				-- Default configuration for builtin pickers goes here:
 				buffers = {
 					theme = "dropdown",
 					winblend = 10,
@@ -52,10 +58,11 @@ return {
 					layout_config = {
 						width = 0.25,
 						height = 0.25,
+						prompt_position = "top",
 					},
 				},
 				find_files = {
-					prompt_position = "bottom",
+					layout_config = { prompt_position = "bottom" },
 					prompt_title = "Find Files",
 					-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
@@ -66,6 +73,10 @@ return {
 					override_generic_sorter = false,
 					override_file_sorter = true,
 				},
+				file_browser = {
+					dir_icon = "󰉓 ",
+					hidden = { file_browser = true, folder_browser = true },
+				},
 			},
 		})
 
@@ -73,10 +84,14 @@ return {
 		telescope.load_extension("fzf")
 
 		-- Key mappings
+		local map = require("core.util").map
 		local builtin = require("telescope.builtin")
-		vim.keymap.set("n", "<leader>ff", builtin.find_files, {})
-		vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
-		vim.keymap.set("n", "<leader>fb", builtin.buffers, {})
-		vim.keymap.set("n", "<leader>fh", builtin.help_tags, {})
+		map("n", "<leader>ff", builtin.find_files, { desc = "Find File" })
+		map("n", "<leader>fB", builtin.buffers, { desc = "List Buffers" })
+		map("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
+		map("n", "<leader>fh", builtin.help_tags, { desc = "Help Tags" })
+		map("n", "<leader>fr", builtin.oldfiles, { desc = "Recent Files" })
+		map("n", "<leader>fb", "<cmd>Telescope file_browser initial_mode=normal<CR>", { desc = "File Browser" })
+		map("n", "<leader>fc", "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", { desc = "Browse Current Dir" })
 	end,
 }

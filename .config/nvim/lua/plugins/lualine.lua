@@ -1,29 +1,56 @@
 return {
-	"akinsho/bufferline.nvim",
+	"nvim-lualine/lualine.nvim",
+	event = "VeryLazy",
 	opts = function()
-		local Offset = require("bufferline.offset")
-		if not Offset.edgy then
-			local get = Offset.get
-			Offset.get = function()
-				if package.loaded.edgy then
-					local layout = require("edgy.config").layout
-					local ret = { left = "", left_size = 0, right = "", right_size = 0 }
-					for _, pos in ipairs({ "left", "right" }) do
-						local sb = layout[pos]
-						if sb and #sb.wins > 0 then
-							local title = " Sidebar" .. string.rep(" ", sb.bounds.width - 8)
-							ret[pos] = "%#EdgyTitle#" .. title .. "%*" .. "%#WinSeparator#│%*"
-							ret[pos .. "_size"] = sb.bounds.width
-						end
-					end
-					ret.total_size = ret.left_size + ret.right_size
-					if ret.total_size > 0 then
-						return ret
-					end
-				end
-				return get()
-			end
-			Offset.edgy = true
-		end
+		vim.o.laststatus = vim.g.lualine_laststatus
+
+		return {
+			options = {
+				theme = "auto",
+				globalstatus = true,
+				disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
+			},
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = { "branch" },
+				lualine_c = {
+					{
+						"diagnostics",
+						symbols = {
+							error = " ",
+							warn = " ",
+							hint = " ",
+							info = " ",
+						},
+						{ "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+					},
+					{ "filename", file_status = true, path = 1 },
+				},
+
+				lualine_x = {
+					{ "encoding" },
+					{ "fileformat" },
+					{ "filetype" },
+					{ -- lazy status
+						require("lazy.status").updates,
+						cond = require("lazy.status").has_updates,
+						color = { fg = "#ff9e64" },
+					},
+				},
+				lualine_y = {
+					{ "progress", separator = " ", padding = { left = 1, right = 0 } },
+					{ "location", padding = { left = 0, right = 1 } },
+				},
+				lualine_z = {
+					function()
+						return " " .. os.date("%I:%M%p")
+					end,
+				},
+			},
+			extensions = { "neo-tree", "lazy", "toggleterm", "trouble" },
+			-- inactive_winbar = {
+			--   lualine_c = { "filename" },
+			-- },
+		}
 	end,
 }

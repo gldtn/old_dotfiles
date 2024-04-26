@@ -1,122 +1,85 @@
 -- ------------------------------------------------
--- [[ Keymaps ]] --
+-- [[ Keymaps Settings ]] --
 -- ------------------------------------------------
 --  See `:help vim.keymap.set()`
 
--- Modes
---   normal_mode = "n",
---   insert_mode = "i",
---   visual_mode = "v",
---   visual_block_mode = "x",
---   term_mode = "t",
---   command_mode = "c",
-
--- ------------------------------------------------
 -- Shorten `vim.keymap.set` function to `Map`,
--- Set `noremap` to true, and set the output to silent.
--- ------------------------------------------------
-function Map(mode, lhs, rhs, opts)
-	local options = { noremap = true, silent = true }
-	if opts then
-		options = vim.tbl_extend("force", options, opts)
-	end
-	vim.keymap.set(mode, lhs, rhs, options)
-end
+local map = require("core.util").map
 
--- ------------------------------------------------
+-- Modes (normal, insert, visual)
+local modes = { "n", "i", "v", "x" }
+
 -- Leader key, remap to space
--- ------------------------------------------------
-Map("", "<Space>", "<Nop>")
+map("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
 -- ------------------------------------------------
--- [[ Normal ]] --
+-- [[ Keymaps ]] --
 -- ------------------------------------------------
+-- a good part of these keymaps was stolen from Lazyvim.
 
--- Save file
-Map("n", "<C-s>", ":w<CR>", { desc = "Save file" })
-Map("n", "<Leader-s>", "<cmd>w<CR>:lua require('notify')('File saved!', 'info')<CR>", { desc = "Save file" })
-Map("n", "<C-q>", ":bd<CR><CR>", { desc = "Close buffer" })
-Map("n", "<S-p>", "<cmd>Telescope buffers<CR>", { desc = "List buffers" })
+-- save file
+map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 
--- Better window navigation
-Map("n", "<C-h>", "<C-w>h")
-Map("n", "<C-j>", "<C-w>j")
-Map("n", "<C-k>", "<C-w>k")
-Map("n", "<C-l>", "<C-w>l")
+-- Move to window using the <ctrl> hjkl keys
+map("n", "<C-h>", "<C-w>h", { desc = "Go to Left Window", remap = true })
+map("n", "<C-j>", "<C-w>j", { desc = "Go to Lower Window", remap = true })
+map("n", "<C-k>", "<C-w>k", { desc = "Go to Upper Window", remap = true })
+map("n", "<C-l>", "<C-w>l", { desc = "Go to Right Window", remap = true })
 
--- Resize with arrows
-Map("n", "<C-Up>", ":resize -2<CR>")
-Map("n", "<C-Down>", ":resize +2<CR>")
-Map("n", "<C-Left>", ":vertical resize -2<CR>")
-Map("n", "<C-Right>", ":vertical resize +2<CR>")
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
 
--- Navigate buffers
-Map("n", "<S-l>", ":bnext<CR>")
-Map("n", "<S-h>", ":bprevious<CR>")
+-- Move Lines
+map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })
+map("n", "<A-k>", "<cmd>m .-2<cr>==", { desc = "Move Up" })
+map("i", "<A-j>", "<esc><cmd>m .+1<cr>==gi", { desc = "Move Down" })
+map("i", "<A-k>", "<esc><cmd>m .-2<cr>==gi", { desc = "Move Up" })
+map("v", "<A-j>", ":m '>+1<cr>gv=gv", { desc = "Move Down" })
+map("v", "<A-k>", ":m '<-2<cr>gv=gv", { desc = "Move Up" })
 
--- Move text up and down
-Map("n", "<J>", ":m .+1<CR>==")
-Map("n", "<K>", ":m .-2<CR>==")
+-- Resize window using <ctrl> arrow keys
+map("n", "<C-Up>", "<cmd>resize +2<cr>", { desc = "Increase Window Height" })
+map("n", "<C-Down>", "<cmd>resize -2<cr>", { desc = "Decrease Window Height" })
+map("n", "<C-Left>", "<cmd>vertical resize -2<cr>", { desc = "Decrease Window Width" })
+map("n", "<C-Right>", "<cmd>vertical resize +2<cr>", { desc = "Increase Window Width" })
+
+-- buffers
+map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
+map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
+map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Close Buffer" })
+map("n", "<C-q>", "<cmd>bd<cr>", { desc = "Close Buffer" })
 
 -- Yank lines
-Map("n", "Y", "y$<CR>:lua require('notify')('Line yanked!', 'info')<CR>", { desc = "Yank to end of line" })
+-- map("n", "Y", "y$<CR>", { desc = "Yank to end of line" })
+-- map("n", "P", "<cmd>pu!<CR>", { desc = "Paste before cursor" })
+-- map("n", "p", "<cmd>pu<CR>", { desc = "Paste after cursor" })
 
 -- Select all
-Map("n", "<C-a>", "gg0VG$", { desc = "Select all" })
+map("n", "<C-a>", "gg0VG$", { desc = "Select all" })
 
--- Comments
--- Map("n", "<C-c>", "gcc", { remap = true, desc = "Line comment" })
--- Map("n", "<C-b>", "gbc", { remap = true, desc = "Block comment" })
--- Map("n", "<C-p>", "gcip", { remap = true, desc = "Paragraph comment" })
-
--- ------------------------------------------------
--- [[ Insert ]]
--- ------------------------------------------------
-
--- ------------------------------------------------
--- [[ Visual ]]
--- ------------------------------------------------
-
--- Stay in indent mode
-Map("v", "<", "<gv^")
-Map("v", ">", ">gv^")
-
--- Move text up and down
-Map("v", "<J>", ":m '>+1<CR>gv=gv")
-Map("v", "<K>", ":m '<-2<CR>gv=gv")
-Map("v", "p", '"_dP')
-
--- ------------------------------------------------
--- [[ Visual Block ]]
--- ------------------------------------------------
-
--- Move text up and down
-Map("x", "J", ":m '>+1<CR>gv=gv")
-Map("x", "K", ":m '<-2<CR>gv=gv")
-Map("x", "<C-j>", ":m '>+1<CR>gv=gv")
-Map("x", "<C-k>", ":m '<-2<CR>gv=gv")
+-- Better identing; stay in indent mode
+map("v", "<", "<gv^")
+map("v", ">", ">gv^")
 
 -- ------------------------------------------------
 -- [[ Misc/Experimental ]]
 -- ------------------------------------------------
 
 -- Comments
-local modes = { "n", "i", "x" }
-
 for _, mode in ipairs(modes) do
-	vim.api.nvim_set_keymap(mode, "<C-c>", "gcc", { noremap = false, silent = true })
-	vim.api.nvim_set_keymap(mode, "<C-b>", "gbc", { noremap = false, silent = true })
-	vim.api.nvim_set_keymap(mode, "<C-p>", "gcip", { noremap = false, silent = true })
+    map(mode, "<C-c>", "gcc", { remap = true, desc = "Line comment" })
+    map(mode, "<C-b>", "gbc", { remap = true, desc = "Block comment" })
+    map(mode, "<C-p>", "gcip", { remap = true, desc = "Paragraph comment" })
 end
-
-Map("n", "<Leader>i", ":call append('.', '')<CR>", { desc = "Insert empty line below" })
-Map("n", "<Leader>I", ":call append(line('.')-1, '')<CR>", { desc = "Insert empty line above" })
-
--- Neotree: toggle
-Map("n", "<C-e>", "<cmd>Neotree toggle<CR>", {})
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-Map("n", "<Esc>", "<cmd>nohlsearch<CR>")
+map("n", "<Esc>", "<cmd>nohlsearch<CR>")

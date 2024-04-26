@@ -1,33 +1,45 @@
 local options = {
 	-- Ident settings
+	tabstop = 2, -- Number of spaces that a <tab> uses
+	title = true, -- Set the title of the window to the file name
+	shiftwidth = 2, -- Number of spaces to use for each step of (auto)ident
+	smarttab = true, -- Use shiftwidth for <tab> and <BS> (Normal mode)
+	expandtab = true, -- Spaces to inset a <tab> (Insert mode)
 	autoindent = true, -- Copy ident from current line
 	smartindent = true, -- Smart identing when starting a new line
-	tabstop = 4, -- Number of spaces that a <tab> uses
-	shiftwidth = 4, -- Number of spaces to use for each step of (auto)ident
-	expandtab = true, -- Spaces to inset a <tab> (Insert mode)
 
 	-- Line settings
-	number = true, -- Enable line numbers
-	relativenumber = false, -- Enable relative numbers
-	cursorline = true, -- Enable cursorline highlight
-	scrolloff = 999, -- Better scrolling
 	wrap = false, -- Disable text wrap
+	scrolloff = 10, -- Better scrolling
+	textwidth = 160, -- Set text width to 1000
+	formatoptions = "tc", -- Autoformat settings
+	relativenumber = true, -- Enable relative numbers
+	cursorline = true, -- Highlight current line
 
 	-- Search settings
-	ignorecase = true, -- Ignore case
 	incsearch = true, -- Include search
 	hlsearch = false, -- Highlight search
+	smartcase = true, -- Smart case search
+	ignorecase = true, -- Ignore case search
 	inccommand = "split", -- Split search editing
 
 	-- Window split settings
 	splitbelow = true, -- Split window below =P
 	splitright = true, -- Split window right =P
+	splitkeep = "cursor", -- Keep cursor position when splitting
+
+	-- File encoding settings
+	encoding = "utf-8", -- Set encoding for the file
+	fileencoding = "utf-8", -- Set encoding for the file
 
 	-- Misc settings
 	mouse = "a", -- Enable mouse mode
-	virtualedit = "block", -- Set highlight to block
 	termguicolors = true, -- Better term colors (24-bit)
+	virtualedit = "block", -- Set highlight to block
 	clipboard = "unnamedplus", -- Synchronizes the system clipboard
+
+	-- Backup settings
+	backup = false, -- Disable backup files
 }
 
 -- Loop through & set the options above
@@ -35,5 +47,4 @@ for option, value in pairs(options) do
 	vim.opt[option] = value
 end
 
--- Set leader key to space
-vim.g.mapleader = " "
+vim.scriptencoding = "utf-8" -- Set encoding for scripts
