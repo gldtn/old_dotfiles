@@ -42,32 +42,26 @@ return {
 
 		-- define mappings
 		local mappings = {
-			b = { name = "Buffers" },
-			D = { "<cmd>Dashboard<cr>", "Dashboard" },
-
-			d = { name = "Diagnostics" },
-
-			c = {
-				name = "Code",
-				i = { "<cmd>call append('.', '')<CR>", "Insert empty line below" },
-				I = { "<cmd>call append(line('.')-1, '')<CR>", "Insert empty line above" },
+			b = { name = "buffer" },
+			c = { name = "code" },
+			D = { "<cmd>Dashboard<cr>", "dashboard" },
+			d = { name = "diagnostics" },
+			f = { name = "find/files" },
+			g = {
+				name = "goto",
+				z = {
+					function()
+						print("Where you going foo?")
+					end,
+					"foo",
+				},
 			},
-
-			f = { name = "Files" },
-			g = { name = "LSP" },
-
-			T = {
-				name = "Treesitter",
-				i = { "<cmd>InspectTree<cr>", "Inspect Tree" },
-				u = { "<cmd>TSUpdate<cr>", "Update Parsers" },
-			},
-
-			t = { name = "Track files" },
-
-			x = { name = "Trouble" },
-
-			l = { "<cmd>Lazy<cr>", "Package manager" },
-			M = { "<cmd>Mason<cr>", "Mason" },
+			l = { "<cmd>Lazy<cr>", "lazy" },
+			M = { "<cmd>Mason<cr>", "mason" },
+			s = { name = "search" },
+			T = { name = "treesitter", i = { "<cmd>InspectTree<cr>", "Inspect Tree" }, u = { "<cmd>TSUpdate<cr>", "Update Parsers" } },
+			t = { name = "track files" },
+			x = { name = "trouble" },
 		}
 
 		-- load config

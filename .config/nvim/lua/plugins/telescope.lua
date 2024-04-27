@@ -1,10 +1,12 @@
 return {
 	"nvim-telescope/telescope.nvim",
-	event = "VeryLazy",
+	branch = "0.1.x",
+	lazy = true,
+	cmd = "Telescope",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
-		"nvim-treesitter/nvim-treesitter",
+		-- "nvim-treesitter/nvim-treesitter",
 		"nvim-telescope/telescope-file-browser.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -19,16 +21,17 @@ return {
 
 		-- configure telescope
 		telescope.setup({
+			dynamic_preview_title = true,
 			defaults = {
 				layout_config = {
 					width = 0.80,
 					height = 0.80,
 				},
-
 				sorting_strategy = "ascending",
-				prompt_title = { padding = { 2 } },
 				prompt_prefix = "  ",
 				selection_caret = "  ",
+				entry_prefix = "    ",
+				set_env = { ["COLORTERM"] = "truecolor" },
 				mappings = {
 					i = {
 						["<C-h>"] = "which_key",
@@ -42,7 +45,6 @@ return {
 					"node_modules",
 					"yarn.lock",
 					".git",
-					"_build",
 					"DS_Store",
 				},
 				hidden = true,
@@ -50,6 +52,7 @@ return {
 			-- custom picker to list buffers
 			pickers = {
 				buffers = {
+					prompt_prefix = "   ",
 					theme = "dropdown",
 					winblend = 10,
 					border = true,
@@ -62,10 +65,51 @@ return {
 					},
 				},
 				find_files = {
+					prompt_prefix = "   ",
 					layout_config = { prompt_position = "bottom" },
 					prompt_title = "Find Files",
 					-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
+				},
+				oldfiles = {
+					prompt_prefix = "   ",
+				},
+				colorscheme = {
+					prompt_prefix = "   ",
+				},
+				highlights = {
+					prompt_prefix = "   ",
+				},
+				live_grep = {
+					prompt_prefix = "   ",
+				},
+				help_tags = {
+					prompt_prefix = "   ",
+				},
+				commands = {
+					prompt_prefix = "   ",
+				},
+				registers = {
+					prompt_prefix = "   ",
+				},
+				spell_suggests = {
+					prompt_prefix = "   ",
+				},
+				keymaps = {
+					prompt_prefix = "   ",
+				},
+				lsp_code_actions = {
+					prompt_prefix = "  ",
+					theme = "cursor",
+				},
+				lsp_references = {
+					prompt_prefix = "   ",
+				},
+				lsp_implementations = {
+					prompt_prefix = "   ",
+				},
+				lsp_document_diagnostics = {
+					prompt_prefix = "   ",
 				},
 			},
 			extensions = {
@@ -75,6 +119,7 @@ return {
 				},
 				file_browser = {
 					dir_icon = "󰉓 ",
+					grouped = true,
 					hidden = { file_browser = true, folder_browser = true },
 				},
 			},
@@ -82,16 +127,16 @@ return {
 
 		-- load telescope extensions
 		telescope.load_extension("fzf")
-
-		-- Key mappings
-		local map = require("core.util").map
-		local builtin = require("telescope.builtin")
-		map("n", "<leader>ff", builtin.find_files, { desc = "Find File" })
-		map("n", "<leader>fB", builtin.buffers, { desc = "List Buffers" })
-		map("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
-		map("n", "<leader>fh", builtin.help_tags, { desc = "Help Tags" })
-		map("n", "<leader>fr", builtin.oldfiles, { desc = "Recent Files" })
-		map("n", "<leader>fb", "<cmd>Telescope file_browser initial_mode=normal<CR>", { desc = "File Browser" })
-		map("n", "<leader>fc", "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", { desc = "Browse Current Dir" })
+		telescope.load_extension("track")
 	end,
+
+	keys = {
+		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
+		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
+		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
+		{ "<leader>fB", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
+		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+		{ "<leader>fb", "<cmd>Telescope file_browser initial_mode=normal<CR>", desc = "File Browser" },
+		{ "<leader>fc", "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", desc = "Browse Current Dir" },
+	},
 }

@@ -28,18 +28,27 @@ local options = {
 	splitright = true, -- Split window right =P
 	splitkeep = "cursor", -- Keep cursor position when splitting
 
-	-- File encoding settings
+	-- File settings
 	encoding = "utf-8", -- Set encoding for the file
 	fileencoding = "utf-8", -- Set encoding for the file
+	swapfile = false, -- Disable swap files
+	backup = false, -- Disable backup files
+
+	-- Popup menu settings
+	pumheight = 25, -- Popup menu height
+	pumwidth = 35, -- Popup menu width
+	pumblend = 0, -- Popup menu blend (transparency)
+	winblend = 0, -- Window blend (transparency)
+	menuitems = 30, -- Menu items limit
+
+	-- Completion settings
+	completeopt = "menuone,noselect", -- Completion options
 
 	-- Misc settings
 	mouse = "a", -- Enable mouse mode
 	termguicolors = true, -- Better term colors (24-bit)
 	virtualedit = "block", -- Set highlight to block
 	clipboard = "unnamedplus", -- Synchronizes the system clipboard
-
-	-- Backup settings
-	backup = false, -- Disable backup files
 }
 
 -- Loop through & set the options above

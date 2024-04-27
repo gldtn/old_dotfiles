@@ -1,5 +1,7 @@
 return {
 	"dharmx/track.nvim",
+	event = "VeryLazy",
+	cmd = "Track",
 	opts = function()
 		require("track").setup({
 			pickers = {

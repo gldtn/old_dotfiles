@@ -60,7 +60,7 @@ return {
 				return { timeout_ms = 500, lsp_fallback = true }
 			end,
 
-			-- Enable/disable autoformat-on-save
+			-- Enable/disable autoformat-on-save functions
 			vim.api.nvim_create_user_command("FormatDisable", function(args)
 				if args.bang then
 					-- FormatDisable! will disable formatting just for this buffer

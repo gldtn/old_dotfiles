@@ -10,6 +10,8 @@ return {
 			-- enable syntax highlighting
 			highlight = {
 				enable = true,
+				use_languagetree = true,
+				additional_vim_regex_highlighting = true,
 			},
 			-- enable indentation
 			indent = { enable = true },
@@ -30,18 +32,8 @@ return {
 				"php",
 			},
 			auto_install = true,
-			refactor = {
-				highlight_definitions = { enable = true },
-			},
-			incremental_selection = {
-				enable = true,
-				keymaps = {
-					init_selection = "<Leader>ss",
-					node_incremental = "<Leader>sn",
-					scope_incremental = "<Leader>si",
-					node_decremental = "<bs>",
-				},
-			},
+			incremental_selection = { enable = true },
+			refactor = { highlight_definitions = { enable = true } },
 		},
 		config = function(_, opts)
 			require("nvim-treesitter.configs").setup(opts)
