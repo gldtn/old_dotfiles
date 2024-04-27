@@ -5,11 +5,11 @@ return {
 			"nvim-telescope/telescope.nvim",
 			dependencies = { "nvim-lua/plenary.nvim" },
 		},
-	},
+	}, -- test
 	keys = {
 		{
 			"<leader>u",
-			"<cmd>Telescope undo<cr>",
+			"<cmd>Telescope undo initial_mode=normal<cr>",
 			desc = "undo history",
 		},
 	},

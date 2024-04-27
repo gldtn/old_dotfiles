@@ -8,7 +8,7 @@ return {
 		"RestoreBundle",
 		"AlternateBundle",
 		"Unmark",
-	},
+	}, -- will it persist?
 	opts = function()
 		require("track").setup({
 			pickers = {

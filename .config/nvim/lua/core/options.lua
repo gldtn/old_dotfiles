@@ -33,6 +33,7 @@ local options = {
 	fileencoding = "utf-8", -- Set encoding for the file
 	swapfile = false, -- Disable swap files
 	backup = false, -- Disable backup files
+	undofile = true, -- Enable undo files
 
 	-- Popup menu settings
 	pumheight = 25, -- Popup menu height
