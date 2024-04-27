@@ -4,9 +4,9 @@ return {
 	lazy = true,
 	cmd = "Telescope",
 	dependencies = {
+		"dharmx/track.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
-		-- "nvim-treesitter/nvim-treesitter",
 		"nvim-telescope/telescope-file-browser.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -18,7 +18,6 @@ return {
 	config = function()
 		-- import telescope plugin
 		local telescope = require("telescope")
-
 		-- configure telescope
 		telescope.setup({
 			dynamic_preview_title = true,
@@ -49,33 +48,37 @@ return {
 				},
 				hidden = true,
 			},
-			-- custom picker to list buffers
+			-- pickers
 			pickers = {
 				buffers = {
 					prompt_prefix = "   ",
 					theme = "dropdown",
-					winblend = 10,
-					border = true,
 					previewer = false,
-					shorten_path = true,
+					sort_lastused = true,
 					layout_config = {
-						width = 0.25,
-						height = 0.25,
+						width = 0.3,
+						height = 0.4,
+						prompt_position = "top",
+					},
+				},
+				colorscheme = {
+					prompt_prefix = "   ",
+					theme = "dropdown",
+					previewer = false,
+					sort_lastused = true,
+					layout_config = {
+						width = 0.3,
+						height = 0.4,
 						prompt_position = "top",
 					},
 				},
 				find_files = {
 					prompt_prefix = "   ",
-					layout_config = { prompt_position = "bottom" },
-					prompt_title = "Find Files",
 					-- `hidden = true` will still show the inside of `.git/` as it's not `.gitignore`d.
 					find_command = { "rg", "--files", "--hidden", "--glob", "!**/.git/*" },
 				},
 				oldfiles = {
 					prompt_prefix = "   ",
-				},
-				colorscheme = {
-					prompt_prefix = "   ",
 				},
 				highlights = {
 					prompt_prefix = "   ",
@@ -134,8 +137,9 @@ return {
 		{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "Live Grep" },
 		{ "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Help Tags" },
 		{ "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find File" },
-		{ "<leader>fB", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
+		{ "<leader>bl", "<cmd>Telescope buffers<cr>", desc = "List Buffers" },
 		{ "<leader>fr", "<cmd>Telescope oldfiles<cr>", desc = "Recent Files" },
+		{ "<leader>ft", "<cmd>Telescope colorscheme<cr>", desc = "Themes" },
 		{ "<leader>fb", "<cmd>Telescope file_browser initial_mode=normal<CR>", desc = "File Browser" },
 		{ "<leader>fc", "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", desc = "Browse Current Dir" },
 	},

@@ -1,7 +1,14 @@
 return {
 	"dharmx/track.nvim",
-	event = "VeryLazy",
-	cmd = "Track",
+	cmd = {
+		"Track",
+		"Mark",
+		"MarkOpened",
+		"StashBundle",
+		"RestoreBundle",
+		"AlternateBundle",
+		"Unmark",
+	},
 	opts = function()
 		require("track").setup({
 			pickers = {
@@ -13,7 +20,7 @@ return {
 
 		-- mappings
 		local map = require("core.util").map
-		map("n", "<leader><leader>", "<cmd>Track<cr>", { desc = "Track" })
+		map("n", "<leader><leader>", "<cmd>Track views<cr>", { desc = "Track" })
 		map("n", "<leader>tb", "<cmd>Track bundles<cr>", { desc = "Track bundles" })
 		map("n", "<leader>tm", "<cmd>Mark<cr>", { desc = "Mark file" })
 		map("n", "<leader>tu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
