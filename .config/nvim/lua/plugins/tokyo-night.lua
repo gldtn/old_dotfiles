@@ -20,6 +20,7 @@ return {
 				local fg = c.fg
 				local dark = c.bg_dark
 				local blue = c.blue
+				local purple = "#bb9af7"
 				local highlight = c.bg_highlight
 				-- set colors
 				hl.TelescopeNormal = {
@@ -38,7 +39,7 @@ return {
 					fg = dark,
 				}
 				hl.TelescopePromptTitle = {
-					bg = blue,
+					bg = purple,
 					fg = dark,
 				}
 				hl.TelescopePreviewTitle = {

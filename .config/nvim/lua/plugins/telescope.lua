@@ -7,6 +7,7 @@ return {
 		"dharmx/track.nvim",
 		"nvim-lua/plenary.nvim",
 		"nvim-tree/nvim-web-devicons",
+		"nvim-treesitter/nvim-treesitter",
 		"nvim-telescope/telescope-file-browser.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
@@ -28,7 +29,7 @@ return {
 				},
 				sorting_strategy = "ascending",
 				prompt_prefix = "  ",
-				selection_caret = "  ",
+				selection_caret = "   ",
 				entry_prefix = "    ",
 				set_env = { ["COLORTERM"] = "truecolor" },
 				mappings = {
