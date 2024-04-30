@@ -22,9 +22,13 @@ map("n", "<S-s>", "<cmd>so %<cr>", { desc = "Reload file" })
 map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("n", "<C-a>", "gg0VG$", { desc = "Select all" })
 
--- Better identing; stay in indent mode
+-- Identing; stay in indent mode
 map("v", "<", "<gv^")
 map("v", ">", ">gv^")
+
+-- Open new lines: stay in normal mode
+map("n", "O", "O<Esc>^")
+map("n", "o", "o<Esc>^")
 
 -- Move Lines
 map("n", "<A-j>", "<cmd>m .+1<cr>==", { desc = "Move Down" })

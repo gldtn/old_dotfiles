@@ -8,6 +8,7 @@ return {
 	},
 	event = "VimEnter",
 	opts = function()
+    -- stylua: ignore start
 		local logo = [[
       @gldtn                                             
       ██╗  ██╗██╗████████╗ █████╗ ███╗   ██╗ █████╗      
@@ -17,9 +18,10 @@ return {
       ██║  ██╗██║   ██║   ██║  ██║██║ ╚████║██║  ██║     
       ╚═╝  ╚═╝╚═╝   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝     
     ]]
+		-- stylua: ignore end
 
 		-- Add 12 empty lines above and below the logo
-		logo = string.rep("\n", 12) .. logo .. "\n\n"
+		logo = string.rep("\n", 10) .. logo .. "\n\n"
 
 		-- Configure dashboard-nvim
 		local opts = {

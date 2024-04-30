@@ -1,28 +1,20 @@
 return {
-	"dharmx/track.nvim",
-	cmd = {
-		"Track",
-		"Mark",
-		"MarkOpened",
-		"StashBundle",
-		"RestoreBundle",
-		"AlternateBundle",
-		"Unmark",
-	}, -- will it persist?
-	opts = function()
-		require("track").setup({
-			pickers = {
-				-- initialize pickers on normal mode
-				bundles = { initial_mode = "normal" },
-				views = { initial_mode = "normal" },
-			},
-		})
+  "dharmx/track.nvim",
+  cmd = { "Track", "Mark", "Unmark" },
+  opts = function()
+    require("track").setup({
+      pickers = {
+        -- initialize pickers on normal mode
+        bundles = { initial_mode = "normal" },
+        views = { initial_mode = "normal" },
+      },
+    })
 
-		-- mappings
-		local map = require("core.util").map
-		map("n", "<leader><leader>", "<cmd>Track views<cr>", { desc = "Track" })
-		map("n", "<leader>tb", "<cmd>Track bundles<cr>", { desc = "Track bundles" })
-		map("n", "<leader>tm", "<cmd>Mark<cr>", { desc = "Mark file" })
-		map("n", "<leader>tu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
-	end,
+    -- mappings
+    local map = require("core.util").map
+    map("n", "<leader><enter>", "<cmd>Track views<cr>", { desc = "Track" })
+    map("n", "<leader>tb", "<cmd>Track bundles<cr>", { desc = "Track bundles" })
+    map("n", "<leader>tm", "<cmd>Mark<cr>", { desc = "Mark file" })
+    map("n", "<leader>tu", "<cmd>Unmark<cr>", { desc = "Unmark file" })
+  end,
 }

@@ -12,9 +12,9 @@ local options = {
 	wrap = false, -- Disable text wrap
 	scrolloff = 10, -- Better scrolling
 	textwidth = 160, -- Set text width to 1000
+	cursorline = true, -- Highlight current line
 	formatoptions = "tc", -- Autoformat settings
 	relativenumber = true, -- Enable relative numbers
-	cursorline = true, -- Highlight current line
 
 	-- Search settings
 	incsearch = true, -- Include search
@@ -36,20 +36,18 @@ local options = {
 	undofile = true, -- Enable undo files
 
 	-- Popup menu settings
-	pumheight = 25, -- Popup menu height
-	pumwidth = 35, -- Popup menu width
 	pumblend = 0, -- Popup menu blend (transparency)
 	winblend = 0, -- Window blend (transparency)
+	pumwidth = 35, -- Popup menu width
+	pumheight = 25, -- Popup menu height
 	menuitems = 30, -- Menu items limit
-
-	-- Completion settings
-	completeopt = "menuone,noselect", -- Completion options
 
 	-- Misc settings
 	mouse = "a", -- Enable mouse mode
 	termguicolors = true, -- Better term colors (24-bit)
 	virtualedit = "block", -- Set highlight to block
 	clipboard = "unnamedplus", -- Synchronizes the system clipboard
+	completeopt = "menuone,noselect", -- Completion options
 }
 
 -- Loop through & set the options above

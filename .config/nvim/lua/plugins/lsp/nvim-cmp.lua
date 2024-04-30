@@ -21,10 +21,11 @@ return {
     -- Icons
     "onsails/lspkind-nvim", -- icons for the popup menu
   },
+
   config = function()
     local cmp = require("cmp")
-    local lspkind = require("lspkind")
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    require("utils.colorscheme")
 
     cmp.setup({
       snippet = {
@@ -32,34 +33,50 @@ return {
           require("luasnip").lsp_expand(args.body)
         end,
       },
-      window = {
-        -- completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-      },
       mapping = {
+        -- stylua: ignore
         ["<Tab>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<S-Tab>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-        ["<CR>"] = cmp.mapping.confirm({
-          behavior = cmp.ConfirmBehavior.Insert,
-          select = true,
-        }),
+        ["<C-Backspace>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+        ["<C-f>"] = cmp.mapping.scroll_docs(4),
+        ["<C-Enter>"] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = true }),
         ["<ESC>"] = cmp.mapping.close(),
+        ["<UP>"] = cmp.mapping.close(),   -- temp hack to hide overlay
+        ["<Down>"] = cmp.mapping.close(), -- temp hack to hide overlay
+      },
+      window = {
+        completion = {
+          col_offset = -3,
+          side_padding = 0,
+        },
       },
       sources = cmp.config.sources({
         { name = "copilot",    group_index = 2 },
         { name = "nvim_lsp",   group_index = 2 },
+        { name = "nvim_lua",   group_index = 2 },
         { name = "luasnip",    group_index = 2 },
         { name = "treesitter", group_index = 2 },
+        { name = "cmdline" },
         { name = "buffer" },
+        { name = "path" },
       }),
       formatting = {
-        format = lspkind.cmp_format({
-          mode = 'symbol', -- show only symbol annotations
-          maxwidth = 50, -- prevent the popup from showing more than provided characters
-          ellipsis_char = '...', -- truncate text from exceeding maxwidth w/ ellipssis
-          show_labelDetails = true, -- show labelDetails in menu.
-          symbol_map = { Copilot = "" }, -- custom symbol for copilot
-        })
+        expandable_indicator = true,
+        fields = { "kind", "abbr", "menu" },
+        format = function(entry, vim_item)
+          local kind = require("lspkind").cmp_format({
+            -- mode = "symbol_text",
+            maxwidth = 50,
+            ellipsis_char = "...",
+            show_labelDetails = true,
+            symbol_map = { Copilot = "" },
+          })(entry, vim_item)
+          local strings = vim.split(kind.kind, "%s", { trimempty = true })
+          kind.kind = " " .. (strings[1] or "") .. " "
+          kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+          return kind
+        end,
       },
       -- Setup lspconfig
       require("lspconfig")["phpactor"].setup({ capabilities = capabilities })
