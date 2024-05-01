@@ -2,7 +2,7 @@
 local color = require("tokyonight.colors").setup()
 local darken = require("tokyonight.util").darken
 local default_bg = darken(color.comment, 0.3)
-local default = { fg = color.blue, bg = darken(color.comment, 0.3) }
+local default = { fg = color.blue, bg = default_bg }
 
 local hl = function(group, attributes)
   vim.api.nvim_set_hl(0, group, attributes)
