@@ -7,6 +7,7 @@ return {
     "dharmx/track.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-tree/nvim-web-devicons",
+    "nvim-telescope/telescope-ui-select.nvim",
     "nvim-telescope/telescope-file-browser.nvim",
     {
       "nvim-telescope/telescope-fzf-native.nvim",
@@ -53,24 +54,21 @@ return {
       pickers = {
         buffers = {
           prompt_prefix = "   ",
-          theme = "dropdown",
           previewer = false,
           sort_lastused = true,
+          initial_mode = "normal",
           layout_config = {
             width = 0.3,
             height = 0.4,
-            prompt_position = "top",
           },
         },
         colorscheme = {
           prompt_prefix = "   ",
-          theme = "dropdown",
           previewer = false,
           sort_lastused = true,
           layout_config = {
             width = 0.3,
             height = 0.4,
-            prompt_position = "top",
           },
         },
         find_files = {
@@ -132,14 +130,30 @@ return {
         file_browser = {
           dir_icon = "󰉓 ",
           grouped = true,
+          initial_mode = "normal",
           hidden = { file_browser = true, folder_browser = true },
         },
+        persisted = {
+          prompt_prefix = "   ",
+          sort_lastused = true,
+          layout_config = {
+            width = 0.3,
+            height = 0.4,
+          },
+        },
+        ["ui-select"] = {
+          require("telescope.themes").get_dropdown({
+            layout_strategy = "cursor",
+            borderchars = { " ", " ", " ", " ", " ", " ", " ", " " },
+          }),
+        }
       },
     })
 
     -- load telescope extensions
     telescope.load_extension("fzf")
     telescope.load_extension("track")
+    telescope.load_extension("ui-select")
   end,
 
   keys = {
@@ -148,9 +162,9 @@ return {
     { "<leader>ff",       "<cmd>Telescope find_files<cr>",                                                     desc = "Find File" },
     { "<leader>fh",       "<cmd>Telescope help_tags<cr>",                                                      desc = "Help Tags" },
     { "<leader>fr",       "<cmd>Telescope oldfiles<cr>",                                                       desc = "Recent Files" },
-    { "<leader>fb",       "<cmd>Telescope file_browser initial_mode=normal<CR>",                               desc = "File Browser" },
-    { "<leader><leader>", "<cmd>Telescope buffers initial_mode=normal<cr>",                                    desc = "List Buffers" },
+    { "<leader>bf",       "<cmd>Telescope file_browser<CR>",                                                   desc = "Browse Files" },
+    { "<leader><leader>", "<cmd>Telescope buffers<cr>",                                                        desc = "List Buffers" },
     { "<leader>fn",       function() require("telescope").extensions.notify.notify() end,                      desc = "Notifications", },
-    { "<leader>fc",       "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", desc = "Browse Current Dir" },
+    { "<leader>bd",       "<cmd>Telescope file_browser path=%:p:h select_buffer=true initial_mode=normal<CR>", desc = "Browse Dir" },
   },
 }

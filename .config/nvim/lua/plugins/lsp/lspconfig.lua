@@ -24,7 +24,7 @@ return {
           vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
           local map = function(keys, func, desc)
-            vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
+            vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = "" .. desc })
           end
 
           local telescope = require("telescope.builtin")
@@ -33,7 +33,7 @@ return {
           map("<leader>cr", buf.rename, "Rename")
           map("<leader>ca", buf.code_action, "Code Action")
           map("<leader>gD", buf.declaration, "Goto Declaration")
-          map("<leader>gd", telescope.lsp_definitions, "Goto Definition")
+          map("<leader>gd", buf.definition, "Goto Definition")
           map("<leader>gt", telescope.lsp_type_definitions, "Type Definition")
           map("<leader>gi", telescope.lsp_implementations, "Goto Implementation")
           map("<leader>gr", telescope.lsp_references, "Goto References")

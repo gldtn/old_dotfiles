@@ -51,3 +51,8 @@ export FPATH="${HOME}/.config/eza/completions/zsh:$FPATH"
 ## Load starship
 eval "$(starship init zsh)"
 export STARSHIP_CONFIG="${HOME}/.config/starship/starship.toml"
+
+# Set brew curl path
+[ -d "$(brew --prefix)/opt/curl/bin" ] &&
+export PATH="$(brew --prefix)/opt/curl/bin:$PATH"
+source "$HOME/.openai_key.zsh"

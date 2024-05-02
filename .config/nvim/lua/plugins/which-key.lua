@@ -8,11 +8,12 @@ return {
 
     -- import which-key plugin
     local wk = require("which-key")
+    local colors = require("tokyonight.colors").setup()
 
     -- configure which-key
     wk.setup({
       window = {
-        border = "single",        -- none, single, double, shadow
+        border = "double",        -- none, single, double, shadow
         position = "bottom",      -- bottom, top
         margin = { 1, 0, 1, 0 },  -- extra window margin [top, right, bottom, left]. When between 0 and 1, will be treated as a percentage of the screen size.
         padding = { 1, 2, 1, 2 }, -- extra window padding [top, right, bottom, left]
@@ -42,7 +43,8 @@ return {
 
     -- define mappings
     local mappings = {
-      b = { name = "buffer" },
+      a = { name = "ai" },
+      b = { name = "buffer/browser" },
       c = { name = "code" },
       D = { "<cmd>Dashboard<cr>", "dashboard" },
       d = { name = "diagnostics" },
@@ -52,7 +54,8 @@ return {
         -- stylua: ignore
         z = { function() print("Where you going foo?") end, "foo" },
       },
-      l = { "<cmd>Lazy<cr>", "lazy" },
+      L = { "<cmd>Lazy<cr>", "lazy" },
+      l = { name = "list/load" },
       M = { "<cmd>Mason<cr>", "mason" },
       s = { name = "search" },
       T = { name = "treesitter", i = { "<cmd>InspectTree<cr>", "Inspect Tree" }, u = { "<cmd>TSUpdate<cr>", "Update Parsers" } },

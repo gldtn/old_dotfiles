@@ -19,7 +19,7 @@ vim.g.maplocalleader = " "
 -- Misc bindings
 map("n", "<M-q>", "<cmd>qa<cr>", { desc = "Exit nvim" })
 map("n", "<S-s>", "<cmd>so %<cr>", { desc = "Reload file" })
-map({ "i", "x", "n", "s" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
+map({ "n", "v", "i" }, "<C-s>", "<cmd>w<cr><esc>", { desc = "Save File" })
 map("n", "<C-a>", "gg0VG$", { desc = "Select all" })
 
 -- Identing; stay in indent mode
@@ -49,10 +49,8 @@ map({ "n", "v" }, "<C-p>", "gcip", { remap = true, desc = "Paragraph comment" })
 -- buffers
 map("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
 map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "[b", "<cmd>bprevious<cr>", { desc = "Prev Buffer" })
-map("n", "]b", "<cmd>bnext<cr>", { desc = "Next Buffer" })
-map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to Other Buffer" })
-map("n", "<leader>bd", "<cmd>bd<cr>", { desc = "Close Buffer" })
+map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Alternate Buffer" })
+map("n", "<leader>bq", "<cmd>bd<cr>", { desc = "Close Buffer" })
 map("n", "<C-q>", "<cmd>bd<cr>", { desc = "Close Buffer" })
 
 -- Move to window using the <ctrl> hjkl keys
