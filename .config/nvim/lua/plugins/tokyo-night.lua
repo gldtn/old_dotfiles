@@ -15,14 +15,15 @@ return {
       ---@param c ColorScheme
       on_highlights = function(hl, c)
         -- define colors
-        local bg = c.bg
-        local fg = c.fg
-        local dark = c.bg_dark
-        local pro_bg = "#292B41"
-        local pro_title = c.red
-        local pre_title = c.blue
-        local res_title = c.magenta
-        local highlight = c.bg_highlight
+        local bg, fg, dark, pro_bg, pro_title, pre_title, res_title, highlight
+        bg = c.bg
+        fg = c.fg
+        dark = c.bg_dark
+        pro_bg = "#292B41"    -- prompt background
+        pro_title = c.red     --  prompt title
+        pre_title = c.blue    -- preview title
+        res_title = c.magenta -- results title
+        highlight = c.bg_highlight
 
         -- telescope
         hl.TelescopeNormal = { bg = dark, fg = fg, }
